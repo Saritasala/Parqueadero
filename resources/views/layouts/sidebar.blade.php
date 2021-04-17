@@ -11,16 +11,15 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-             <li class="">
-                <a href="">
-                    //Icono
-                    <p>{{ __('Productos') }}</p>
+            <li class="">
+                <a href="{{ route('home') }}">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>{{ __('Home') }}</p>
                 </a>
             </li>
             <li class="">
-                <a href="">
-                    <i class="nc-icon nc-bank"></i>
-                    <p>{{ __('Dashboard') }}</p>
+                <a href="{{ route('product.index')}}">
+                    <p>{{ __('Productos') }}</p>
                 </a>
             </li>
             

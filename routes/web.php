@@ -27,8 +27,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productos', 'ProductController@index')->name('product.index');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
-	Route::put('profile', 'ProfileController@update')->name('profile.update');
-	Route::put('profile/password', 'ProfileController@password')->name('profile.password');
+Route::put('profile', 'ProfileController@update')->name('profile.update');
+Route::put('profile/password', 'ProfileController@password')->name('profile.password');

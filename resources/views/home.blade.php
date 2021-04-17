@@ -1,23 +1,58 @@
-@extends('layouts.app')
+@extends('layouts.app', [
+'class' => 'Home',
+
+])
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+<br>
+<div class="content p-4 p-md-5 pt-5">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card bg-light mb-4" style="padding: 30px 20px;">
+                <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
+                    <p class="text-white">Usuarios</p></div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
-            </div>
+              </div>
         </div>
-    </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card bg-light mb-4" style="padding: 30px 20px;">
+                <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
+                    <p class="text-white">Productos</p></div>
+                <div class="card-body">
+                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <p class="card-text" style=" text-align: center;">Registrados</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card bg-light mb-4" style="padding: 30px 20px;">
+                <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
+                    <p class="text-white">Comercios</p></div>
+                <div class="card-body">
+                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <p class="card-text" style=" text-align: center;">Registrados</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card bg-light mb-4" style="padding: 30px 20px;">
+                <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
+                    <p class="text-white">Ordenes</p></div>
+                <div class="card-body">
+                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <p class="card-text" style=" text-align: center;">Registrados</p>
+                </div>
+              </div>
+        </div>
 </div>
+
+
 @endsection
+
+@push('scripts')
+
+@endpush
+

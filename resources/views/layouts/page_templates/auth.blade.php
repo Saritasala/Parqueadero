@@ -32,59 +32,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                <ul class="navbar-nav">
                   <li class="nav-item btn-rotate dropdown">
-                     <button type="button" class="nav-link dropdown-toggle btn btn-primary btn-sm m-0"
-                        data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                        <i class="nc-icon nc-bell-55"></i> Recargar
-                     </button>
-                     <div class="dropdown-menu dropdown-menu-right p-3" aria-labelledby="navbarDropdownMenuLink">
-                        <form method="POST" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/" target="_blank"
-                           id="idFormRecharge">
-                           <div class="row">
-                              <div class="col">
-                                 <div class="form-group m-0 mb-2">
-                                    <label for="idAddRoleName" class="control-label">Valor *</label>
-                                    <input type="number" name="amount" class="form-control" placeholder="Valor">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col">
-                                 <div class="form-group m-0">
-                                    <button type="button"
-                                       class="btn btn-primary btn-block balanceRecharge">Recargar</button>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <input name="merchantId" type="hidden">
-                           <input name="accountId" type="hidden">
-                           <input name="description" type="hidden">
-                           <input name="referenceCode" type="hidden">
-                           <input name="tax" type="hidden">
-                           <input name="taxReturnBase" type="hidden">
-                           <input name="currency" type="hidden">
-                           <input name="signature" type="hidden">
-                           <input name="test" type="hidden">
-                           <input name="buyerEmail" type="hidden">
-                           <input name="responseUrl" type="hidden">
-                           <input name="confirmationUrl" type="hidden">
-                           <input name="extra1" type="hidden">
-                        </form>
-                     </div>
-                  </li>
-                  <li class="nav-item btn-rotate dropdown">
-                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="nc-icon nc-bell-55"></i>
-                        <p>
-                           <span class="d-lg-none d-md-block">{{ __('Some Actions') }}</span>
-                        </p>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">{{ __('Notificaciones') }}</a>
-                     </div>
-                  </li>
-                  <li class="nav-item btn-rotate dropdown">
                      <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-settings-gear-65"></i>

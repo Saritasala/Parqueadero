@@ -2017,20 +2017,20 @@ pre code {
 }
 
 .table .thead-dark th {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #454d55;
+  color:#e9ecef;
+  background-color:#2fa360;
+  border-color: #1b663a;
 }
 
 .table .thead-light th {
-  color: #495057;
-  background-color: #e9ecef;
-  border-color: #dee2e6;
+  color:#e9ecef;
+  background-color:#2fa360;
+  border-color: #1b663a;
 }
 
 .table-dark {
   color: #fff;
-  background-color: #343a40;
+  background-color: #2fa360;
 }
 
 .table-dark th,

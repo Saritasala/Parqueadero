@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    
+    <link type="text/css" href="{{ asset('paper') }}/css/paper-dashboard.css?v=v2.0.0" rel="stylesheet">
     <!-- Extra details for Live View on GitHub Pages -->
     <!-- Canonical SEO -->
     <!-- <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-laravel" /> -->

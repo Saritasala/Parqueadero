@@ -25,7 +25,11 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Productos
 Route::get('/productos', 'ProductController@index')->name('product.index');
+Route::get('/productos/crear', 'ProductController@create')->name('product.create');
+Route::get('/productos/editar', 'ProductController@edit')->name('product.edit');
+
 
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
 Route::put('profile', 'ProfileController@update')->name('profile.update');

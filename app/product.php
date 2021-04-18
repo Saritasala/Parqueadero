@@ -17,4 +17,8 @@ class product extends Model
     ];
     protected $table = 'product';
 
+    public function getComercio(){
+      return $this->belongsTo(comercio::class, 'comercio_id');
+   }
+
 }

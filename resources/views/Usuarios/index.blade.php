@@ -24,8 +24,8 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <button type="button" class=" btn bg-info btn-sm text-white" >Crear Usuario</button>
-                        
+                        <a  href="{{route('usuarios.create')}}" class=" btn bg-info btn-sm text-white" >Crear Usuarios</a>
+                    
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">
                                 <thead class="thead-light" style=" background-color:rgb(24, 173, 116);">

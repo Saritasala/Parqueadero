@@ -9,6 +9,7 @@ class order extends Model
     protected $fillable = [
     'name',
     'reference',
+    'producto_id',
     'date',
     'payment_type_vp',
     'payment_state',
@@ -17,5 +18,5 @@ class order extends Model
     'order_state',
     ];
 
-    protected $table = 'order';
+    protected $table = 'orders';
 }

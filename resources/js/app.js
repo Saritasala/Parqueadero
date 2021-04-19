@@ -30,3 +30,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+$(".inputImg").on("change", function () {
+  if (this.files && this.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $(".imgUpdate").attr("src", e.target.result);
+    };
+
+    reader.readAsDataURL(this.files[0]);
+  }
+});

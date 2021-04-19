@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->integer('id', true);
             $table->string('name');
             $table->string('reference', 500);
+            $table->integer('producto_id');
             $table->dateTime('date');
             $table->integer('payment_type_vp');
             $table->integer('payment_state');

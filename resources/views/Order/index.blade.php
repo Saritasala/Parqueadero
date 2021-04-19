@@ -24,7 +24,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <button type="button" class=" btn bg-info btn-sm text-white" >Crear Orden</button>
+                        <a  href="{{route('order.create')}}" class=" btn bg-info btn-sm text-white" >Crear Producto</a>
                         
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">

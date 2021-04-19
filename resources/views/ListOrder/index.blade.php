@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-'class' => 'Comercios',
+'class' => 'Listado de ordenes',
 
 ])
 
@@ -17,22 +17,22 @@
                     <div class="card-header" style="text-align: center; background-color:rgb(17, 116, 78); font-size: 12px; ">
                         <div class="row align-items-center">
                             <div class="col-md-12">
-                                <h5 class="card-title text-white" >Comercios</h5>
+                                <h5 class="card-title text-white" >Listado de ordenes</h5>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
-                        <a  href="{{route('comercio.create')}}" class=" btn bg-info btn-sm text-white" >Crear Comercio</a>
+                    <div class="card-body">                        
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">
                                 <thead class="thead-light" style=" background-color:rgb(24, 173, 116);">
                                     <tr>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Apellido</th>
                                         <th scope="col">Correo</th>
-                                        <th scope="col">Estado</th>
+                                        <th scope="col">Rol</th>
+                                        <th scope="col">Orden</th>
                                         <th scope="col">Accion</th>
                                         <th></th>
                                     </tr>

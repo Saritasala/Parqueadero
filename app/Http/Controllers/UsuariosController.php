@@ -30,10 +30,10 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
         }
     }
 
-    public function edit( $id)
+    public function edit( )
     {
             
-    return view('product.edit');
+    return view('Usuarios.edit');
     }
 
     public function update(Request $request, $id){

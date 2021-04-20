@@ -4,7 +4,7 @@
 ])
 
 @section('content')
-<div class="content" id="app">
+<div class="content">
     <div class="container-fluid mt--2">
         <div class="row">
             @if (session('status'))
@@ -22,10 +22,10 @@
                                     src="https://scotturb.com/wp-content/uploads/2016/11/product-placeholder.jpg"
                                     alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">Datos del Comercio</h5>
+                                    <h5 class="card-title">Datos del producto</h5>
                                     <div class="form-group">
                                         <label>Imagen *</label>
-                                        <input type="file" style="z-index: 100% !important" name="productImg" id="inputImg" class="form-control-file">
+                                        <input type="file" name="imgProduct" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
                                     </div>
                                     <div class="form-group">
                                         <label>Descripción</label>
@@ -38,49 +38,30 @@
                         <div class="col-8">
                             <div class="card bg-secondary shadow mb-3">
                                 <div class="card-header border-0" style="background-color:rgb(24, 173, 116);" >
-                                    <h3 class="mb-0" style="text-align: center" >Características del comercio</h3>
+                                    <h3 class="mb-0" style="text-align: center" >Características del producto</h3>
                                 </div>
                                 <div class="card-body text-black" style="background-color: #ffff;" >
                                     <div class="row">
                                         <div class="form-group col">
                                             <label>Nombre *</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Nombre del Comercio"
+                                            <input type="text" name="name" class="form-control" placeholder="Nombre del producto"
                                                 value="">
                                         </div>
                                         <div class="form-group col">
-                                            <label>Descripcion *</label>
+                                            <label>Precio *</label>
                                             <div class="input-group">
-                                                <input name="description" type="text" class="form-control" placeholder="Descripcion" required
+                                                <input name="value" type="number" class="form-control" placeholder="Precio" required
                                                     value="">
                                             </div>
                                         </div>
                                         <div class="form-group col">
-                                            <label>Telefono *</label>
+                                            <label>Cantidad *</label>
                                             <div class="input-group">
-                                                <input name="number" type="number" class="form-control" placeholder="Telefono"
+                                                <input name="quantity" type="number" class="form-control" placeholder="Cantidad"
                                                     required value="">
                                                 
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label>Correo *</label>
-                                            <div class="input-group">
-                                                <input name="email" type="text" class="form-control" placeholder="Correo"
-                                                     value="">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Direccion *</label>
-                                            <div class="input-group">
-                                                <input name="direccion" type="text" class="form-control" placeholder="Direccion"
-                                                    required value="">
-                                                
-                                            </div>
-                                        </div>
-                                        
                                     </div>
                                 </div>
                             </div>

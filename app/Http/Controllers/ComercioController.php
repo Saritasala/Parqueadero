@@ -12,7 +12,7 @@ class ComercioController extends Controller
 {
     public function index(){
         
-        return view('Comercios.index'); //$producto);
+        return view('Comercios.index'); 
     }
 
 public function create(){

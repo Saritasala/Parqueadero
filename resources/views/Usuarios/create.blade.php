@@ -49,21 +49,18 @@
                                        
                                     </select>
                                 </div>
-                                <password-btn inline-template>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label class="form-control-label" for="input-password">Contraseña *</label>
                                         <div class="d-flex">
                                             <input type="password" name="password" readonly v-model="password"
                                                 id="input-password"  class="form-control"
                                                 placeholder="Contraseña" required>
-                                            <button @click="generatePassword" type="button"
-                                                class="btn btn-primary my-0">Generar </button>
+                                            <button type="button" class="btn btn-primary my-0">Generar </button>
                                         </div>
                                         <input type="hidden" name="password_confirmation" readonly v-model="password"
                                                 id="input-password"  class="form-control"
                                                 placeholder="Contraseña" required>
                                     </div>
-                                </password-btn>
                             </div>
                             <div class="row justify-content-center">
                                 <button type="submit" class="btn btn-primary">Crear Usuario</button>

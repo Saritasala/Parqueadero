@@ -39,31 +39,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                        <tr id="">
-                                            <td></td>
-                                           
+                                    @foreach ($producto as $product)
+                                        <tr id="{{$product->id}}">
+                                            @if(!empty($product))
+                                            <td>{{$product->title}}</td>
+                                            <td>{{$product->precio}}</td>
+                                            <td>{{$product->stock}}</td>
+                                            @if($product->state==1)
                                                 <td><span class="badge badge-pill badge-success">Activo</span></td>
-                                        
+                                            @else
                                                 <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
-                                           
+                                            @endif
                                             <td>
                                                 <a class="btn btn-warning btn-sm" title="Editar"
-                                                href=""><i class="nc-icon nc-ruler-pencil"></i>
+                                                href="{{route('product.edit', [$product->id])}}"><i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
-                                            </td>
-                                            <td>
+                
                                                 <a class="btn btn-info btn-sm" title="Detalles"
                                                 href=""><i class="nc-icon nc-badge"></i>
                                                 </a>
+
+                                                <button class="btn btn-sm btn-danger btnEraseProduct" title="Eliminar">
+                                                    <i class="fas fa-trash-alt"></i></button>
                                             </td>
-                                            <td>
-                                                <a class="btn btn-danger btn-sm" title="Eliminar"
-                                                href=""><i class="nc-icon nc-simple-delete"></i>
-                                                </a>
-                                            </td>
+                                            @else
+                                            <td>No hay productos registrados</td>
+                                            @endif
                                         </tr>
-                                   
+                                        @endforeach
                                 </tbody>
                             </table>
                         </div>

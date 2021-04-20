@@ -13,14 +13,14 @@
             </div>
             @endif
             <div class="col-md-12">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{route('product.update', [$product->id])}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
                     <input type="hidden" name="" value="">
                     <div class="row mt-5">
                         <div class="col-4">
                             <div class="card">
-                                <img class="card-img-top imgUpdate"
-                                    src="https://scotturb.com/wp-content/uploads/2016/11/product-placeholder.jpg"
-                                    alt="Card image cap">
+                                
                                 <div class="card-body">
                                     <h5 class="card-title">Datos del producto</h5>
                                     <div class="form-group">
@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label>Descripción</label>
                                         <textarea name="description" cols="30" rows="5"
-                                            class="form-control" style="border-color: rgb(190, 190, 190)"></textarea>
+                                            class="form-control" style="border-color: rgb(190, 190, 190)">{{$product->description}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -44,21 +44,21 @@
                                     <div class="row">
                                         <div class="form-group col">
                                             <label>Nombre *</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Nombre del producto"
-                                                value="">
+                                            <input type="text" name="title" class="form-control" placeholder="Nombre del producto"
+                                                value="{{$product->title}}">
                                         </div>
                                         <div class="form-group col">
                                             <label>Precio *</label>
                                             <div class="input-group">
-                                                <input name="value" type="number" class="form-control" placeholder="Precio" required
-                                                    value="">
+                                                <input name="precio" type="number" class="form-control" placeholder="Precio" required
+                                                    value="{{$product->precio}}">
                                             </div>
                                         </div>
                                         <div class="form-group col">
                                             <label>Cantidad *</label>
                                             <div class="input-group">
-                                                <input name="quantity" type="number" class="form-control" placeholder="Cantidad"
-                                                    required value="">
+                                                <input name="stock" type="number" class="form-control" placeholder="Cantidad"
+                                                    required value="{{$product->stock}}">
                                                 
                                             </div>
                                         </div>

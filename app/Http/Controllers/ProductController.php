@@ -12,35 +12,35 @@ use Illuminate\Support\Facades\Redirect;
 class ProductController extends Controller
 {
     public function index(){
-    //$user = Auth::user();
-        //if($user->role_id==1){
-       // $producto= product::where('state',[1,2])->with('getComercio')->get();
-       // }else{
-        //$producto= product::where('state', 1)->with('getComercio')->get();
-        //}
-        return view('Productos.index'); //$producto);
+    $user = Auth::user();
+        if($user->role_id==1){
+       $producto= product::where('state',[1,2])->with('getComercio')->get();
+       }else{
+        $producto= product::where('state', 1)->with('getComercio')->get();
+        }
+        return view('Productos.index',['producto'=>$producto]);
     }
 
     public function create(){
-        
-        return view('Productos.create');
+        $commerce = comercio::where('state',1)->get();
+        return view('Productos.create', ['commerce'=>$commerce]);
     }
 
     public function store(Request $request)
     {
         $create = $this->funCreate($request)->getData();
         if($create->code == 200){
-            $request->session()->flash('success', 'Creado el proyecto con exito');
-            return redirect()->route('index.product');
+            $request->session()->flash('success', 'Creado el producto con exito');
+            return redirect()->route('product.index');
         }else{
             return back();
         }
     }
 
-    public function edit( $id)
+    public function edit($id)
     {
-        
-        return view('product.edit');
+        $product = product::where('id', $id)->with('getComercio')->first();
+        return view('Productos.edit', ['product' =>$product]);
     }
 
     public function update(Request $request, $id){
@@ -53,6 +53,12 @@ class ProductController extends Controller
         }
     }
 
+    public function destroy($id)
+    {
+        request()->merge(['id' => $id]);
+        return $this->funDelete(request());
+    }
+
     
 
     //Funciones**
@@ -63,7 +69,7 @@ class ProductController extends Controller
             'description' => 'required|max:500',
             'precio' => 'required',
             'stock' => 'required|max:100',
-            'img_product' => 'required|image|mimes:jpg,jpeg,png|max:499',
+            'img_product' => 'required|image|mimes:jpg,jpeg,png|max:200000',
             'comercio_id' => 'required|exists:comercios,id',
         ]);
        
@@ -72,8 +78,11 @@ class ProductController extends Controller
         $newProduct->description = $request->description;
         $newProduct->precio = $request->precio;
         $newProduct->stock = $request->stock;
-        $newProduct->img_product = $request->img_product;
+        if ($request->imgProduct) {
+                $newProduct->img_product = $request->img_product->store('product_images', 'public');
+            }
         $newProduct->comercio_id = $request->comercio_id;
+        $newProduct->state = 1;
         if ($newProduct->save()) {
             return response()->json(['code' => 200, 'data' => $newProduct], 200);
         } else {

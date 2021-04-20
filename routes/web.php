@@ -28,7 +28,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Productos
 Route::get('/productos', 'ProductController@index')->name('product.index');
 Route::get('/productos/crear', 'ProductController@create')->name('product.create');
-Route::get('/productos/editar', 'ProductController@edit')->name('product.edit');
+Route::post('/productos/crear', 'ProductController@store')->name('product.store');
+Route::get('/productos/editar/{id}', 'ProductController@edit')->name('product.edit');
+Route::post('/productos/editar/{id}', 'ProductController@update')->name('product.update');
+Route::post('/productos/eliminar/{id}', 'ProductController@destroy')->name('product.destroy');
 
 //Ordenes
 Route::get('/ordenes', 'OrderController@index')->name('order.index');

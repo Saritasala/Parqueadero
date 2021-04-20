@@ -13,7 +13,8 @@
             </div>
             @endif
             <div class="col-md-12">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <input type="hidden" name="" value="">
                     <div class="row mt-5">
                         <div class="col-4">
@@ -25,7 +26,17 @@
                                     <h5 class="card-title">Datos del producto</h5>
                                     <div class="form-group">
                                         <label>Imagen *</label>
-                                        <input type="file" name="imgProduct" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
+                                        <input type="file" name="img_product" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Comercio</label>
+                                        <select name="comercio_id" id="" class="form-control" required>
+                                            <option value="" selected disabled> Seleccione Comercio</option>
+                                            @foreach ($commerce as $comercio)
+                                            <option {{old('commerce')==$comercio->id?'selected ':''}} value="{{$comercio->id}}">
+                                                {{$comercio->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Descripción</label>
@@ -44,20 +55,20 @@
                                     <div class="row">
                                         <div class="form-group col">
                                             <label>Nombre *</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Nombre del producto"
+                                            <input type="text" name="title" class="form-control" placeholder="Nombre del producto"
                                                 value="">
                                         </div>
                                         <div class="form-group col">
                                             <label>Precio *</label>
                                             <div class="input-group">
-                                                <input name="value" type="number" class="form-control" placeholder="Precio" required
+                                                <input name="precio" type="number" class="form-control" placeholder="Precio" required
                                                     value="">
                                             </div>
                                         </div>
                                         <div class="form-group col">
                                             <label>Cantidad *</label>
                                             <div class="input-group">
-                                                <input name="quantity" type="number" class="form-control" placeholder="Cantidad"
+                                                <input name="stock" type="number" class="form-control" placeholder="Cantidad"
                                                     required value="">
                                                 
                                             </div>

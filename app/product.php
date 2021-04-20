@@ -15,7 +15,7 @@ class product extends Model
         'comercio_id',
         'state',
     ];
-    protected $table = 'product';
+    protected $table = 'products';
 
     public function getComercio(){
       return $this->belongsTo(comercio::class, 'comercio_id');

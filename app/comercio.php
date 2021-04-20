@@ -14,5 +14,5 @@ class comercio extends Model
     'direccion',
     ];
     
-    protected $table = 'comercio';
+    protected $table = 'comercios';
 }

@@ -17,7 +17,7 @@ class CreateComerciosTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->integer('number');
+            $table->string('number',10);
             $table->string('email');
             $table->string('direccion');
             $table->integer('state')->default(1);

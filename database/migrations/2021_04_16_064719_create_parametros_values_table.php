@@ -14,8 +14,12 @@ class CreateParametrosValuesTable extends Migration
     public function up()
     {
         Schema::create('parametros_values', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->integer('id', true);
+            $table->integer('parameter_id');
+            $table->string('name', 500);
+            $table->integer('state')->default(1);
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent();
         });
     }
 

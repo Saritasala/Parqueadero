@@ -1,6 +1,7 @@
 const { default: Swal } = require("sweetalert2");
 $(document).ready(function () {
     $('.btnEraseProduct').on('click', function (e) {
+        console.log("INSIDE");
         e.preventDefault()
         let id = $(this).parents('tr').attr('id');
         Swal.fire({
@@ -14,10 +15,13 @@ $(document).ready(function () {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {
-              console.log(id);
+              //console.log(id);
+              let token = document.querySelector('meta[name="token"]').getAttribute('content');
+              let route = '/productos/eliminar/' + id;
                 $.ajax({
+                    url: route,
+                    headers: {'X-CSRF-TOKEN' : token},
                     type: "delete",
-                    url: "/productos/eliminar/" + id,
                     dataType: "json",
                     beforeSend: function () {
                         Swal.fire({

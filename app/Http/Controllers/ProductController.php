@@ -115,18 +115,11 @@ class ProductController extends Controller
 		}
     }
 
-    public function funDelete(Request $request){
-        $request->validate([
-            'id' => 'required|exists:products,id'
-         ]);
-         dd($request);
-         try{
-            $model = product::where('id', $request->id)->first();
-            $model->state = 3;
-            $model->update();
+    public function funDestroy($id){
+        if(product::where('id', $id)->delete()){
             return $this->respond('done', []);
-        } catch (\Throwable $e) {
-            return $this->respond('server error', [], $e->getMessage());
-        }
+        }else{
+            return $this->respond('server error', []);
+        } 
     }
 }

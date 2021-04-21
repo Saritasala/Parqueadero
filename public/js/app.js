@@ -3745,6 +3745,7 @@ var _require = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert
 
 $(document).ready(function () {
   $('.btnEraseProduct').on('click', function (e) {
+    console.log("INSIDE");
     e.preventDefault();
     var id = $(this).parents('tr').attr('id');
     Swal.fire({
@@ -3758,10 +3759,15 @@ $(document).ready(function () {
       cancelButtonText: 'Cancelar'
     }).then(function (result) {
       if (result.value) {
-        console.log(id);
+        //console.log(id);
+        var token = document.querySelector('meta[name="token"]').getAttribute('content');
+        var route = '/productos/eliminar/' + id;
         $.ajax({
+          url: route,
+          headers: {
+            'X-CSRF-TOKEN': token
+          },
           type: "delete",
-          url: "/productos/eliminar/" + id,
           dataType: "json",
           beforeSend: function beforeSend() {
             Swal.fire({
@@ -3808,8 +3814,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Gestion_de_Facturacion\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Gestion_de_Facturacion\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Facturacion_Gestion\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Facturacion_Gestion\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

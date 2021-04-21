@@ -31,11 +31,12 @@ Route::get('/productos/crear', 'ProductController@create')->name('product.create
 Route::post('/productos/crear', 'ProductController@store')->name('product.store');
 Route::get('/productos/editar/{id}', 'ProductController@edit')->name('product.edit');
 Route::post('/productos/editar/{id}', 'ProductController@update')->name('product.update');
-Route::post('/productos/eliminar/{id}', 'ProductController@destroy')->name('product.destroy');
+Route::delete('/productos/eliminar/{id}', 'ProductController@funDelete');
 
 //Ordenes
 Route::get('/ordenes', 'OrderController@index')->name('order.index');
 Route::get('/ordenes/crear', 'OrderController@create')->name('order.create');
+Route::post('/productos/crear', 'OrderController@store')->name('order.store');
 Route::get('/ordenes/editar', 'OrderController@edit')->name('order.edit');
 
 //Comercios

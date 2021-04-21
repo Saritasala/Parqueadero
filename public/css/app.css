@@ -2017,20 +2017,20 @@ pre code {
 }
 
 .table .thead-dark th {
-  color:#e9ecef;
-  background-color:#2fa360;
-  border-color: #1b663a;
+  color: #fff;
+  background-color: #343a40;
+  border-color: #454d55;
 }
 
 .table .thead-light th {
-  color:#e9ecef;
-  background-color:#2fa360;
-  border-color: #1b663a;
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
 }
 
 .table-dark {
   color: #fff;
-  background-color: #2fa360;
+  background-color: #343a40;
 }
 
 .table-dark th,
@@ -2044,12 +2044,12 @@ pre code {
 }
 
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #2fa360;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
-  background-color: #2fa360;
+  background-color: rgba(255, 255, 255, 0.075);
 }
 
 @media (max-width: 575.98px) {

@@ -1,6 +1,7 @@
 const { default: Swal } = require("sweetalert2");
 $(document).ready(function () {
     $('.btnEraseProduct').on('click', function (e) {
+        console.log('Hola soy yo Sarita, entra por favor');
         e.preventDefault()
         let id = $(this).parents('tr').attr('id');
         Swal.fire({
@@ -50,4 +51,4 @@ $(document).ready(function () {
             }
         })
     })
-}
+})

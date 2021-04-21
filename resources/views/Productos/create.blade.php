@@ -26,7 +26,7 @@
                                     <h5 class="card-title">Datos del producto</h5>
                                     <div class="form-group">
                                         <label>Imagen *</label>
-                                        <input type="file" name="img_product" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
+                                        <input type="file" name="imgProduct"  class="form-control inputImg">
                                     </div>
                                     <div class="form-group">
                                         <label>Comercio</label>

@@ -20,12 +20,20 @@
                     <div class="row mt-5">
                         <div class="col-4">
                             <div class="card">
-                                
+                                @if (Storage::disk('public')->exists($product->img_product))
+                                <img class="card-img-top imgUpdate"
+                                    src="{{ asset('storage/' . $product->img_product) }}"
+                                    alt="User profile picture">
+                                @else
+                                <img class="card-img-top imgUpdate"
+                                    src="https://scotturb.com/wp-content/uploads/2016/11/product-placeholder.jpg"
+                                    alt="User profile picture">
+                                @endif
                                 <div class="card-body">
                                     <h5 class="card-title">Datos del producto</h5>
                                     <div class="form-group">
                                         <label>Imagen *</label>
-                                        <input type="file" name="imgProduct" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
+                                        <input type="file" name="img_product" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
                                     </div>
                                     <div class="form-group">
                                         <label>Descripción</label>

@@ -20,7 +20,7 @@
                             <h5 class="card-title" style="text-align: center" >Crear Orden</h5>
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST">
+                            <form action="{{route('order.store')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
@@ -37,8 +37,12 @@
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label class="form-control-label" for="product[]">Productos *</label>
                                         <select name="product[]" class="form-control select2" multiple="multiple" required>
-                                            <option value="" disabled> Seleccione el/los participantes</option>
-                                            
+                                            <option value="" disabled> Seleccione el/los productos</option>
+                                            @if(!@empty($producto))
+                                            @foreach ($producto as $product)
+                                            <option value="{{$product->id}}">{{$product->title}}</option>
+                                            @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
@@ -90,7 +94,7 @@
                                 </div>
                                 
                                     <div class="row justify-content-center">
-                                        <button type="submit" class="btn btn-primary btn-round">Crear Proyecto</button>
+                                        <button type="submit" class="btn btn-primary btn-round">Crear Orden</button>
                                     </div>
                             </form>
                         </div>

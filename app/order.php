@@ -10,7 +10,6 @@ class order extends Model
         'user_id',
         'name',
         'reference',
-        'producto_id',
         'date',
         'payment_type_vp',
         'payment_state',
@@ -24,4 +23,5 @@ class order extends Model
     public function getUser(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
 }

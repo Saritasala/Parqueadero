@@ -5,47 +5,52 @@ namespace App\Http\Controllers;
 
 use App\product;
 use App\order;
+use App\order_product;
 use DB;
+use App\Http\Controllers\RestActions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
+    use RestActions;
+
     public function index(){
-        
-            return view('Order.index'); //$producto);
+        $user = Auth::user();
+        if($user->role_id==1){
+            $orden= order::where('state',[1,2])->with( 'getUser')->get();
+        }else{
+            $orden= order::where('state', 1)->with( 'getUser')->get();
         }
+        return view('Order.index',['orden'=>$orden]);
+    }
     
     public function create(){
-            
-        return view('Order.create');
+        $producto = product::where('state',1)->get();   
+        return view('Order.create', ['producto'=>$producto]);
     }
     
     public function store(Request $request)
     {
-        $create = $this->funCreate($request)->getData();
-        if($create->code == 200){
-            $request->session()->flash('success', 'Creado el proyecto con exito');
-            return redirect()->route('index.product');
-        }else{
-            return back();
-        }
+        $create = $this->funCreate($request);
+        return redirect()->route('order.index')->withStatus(__('Orden registrada exitosamente.'));
     }
     
     public function edit( $id)
     {
-            
-    return view('product.edit');
+        $order = order::where('id', $id)->with('getProducto')->first();
+        return view('Order.edit', ['order' =>$order]);
+        
     }
     
     public function update(Request $request, $id){
         $request->merge(['id' => $id]);
-        $store = $this->funUpdate($request)->getData();
-        if($store->code == 200){
-            return back()->with('success', 'Actualizado con exito');
+        $store = $this->funUpdate($request, $id);
+        if($store['status'] == 200){
+            return back()->withStatus(__('Orden actualizada exitosamente.'));
         }else{
-            return back();
+            return back()->withStatus(__('Hubo un error, intentelo nuevamente.'));
         }
     }
     
@@ -55,25 +60,35 @@ class OrderController extends Controller
     
     public function funCreate(Request $request){
         $request->validate([
-            'title' => 'required|max:499',
-            'description' => 'required|max:500',
-            'precio' => 'required',
-            'stock' => 'required|max:100',
-            'img_product' => 'required|image|mimes:jpg,jpeg,png|max:499',
-            'comercio_id' => 'required|exists:comercios,id',
+            'name' => 'required|max:499',
+            'reference' => 'required|max:500',
+            'product' => 'required|array',
+            'date' => 'required|max:100',
+            'direccion'=> 'required',
         ]);
-           
-        $newProduct = new Product();
-        $newProduct->title = $request->title;
-        $newProduct->description = $request->description;
-        $newProduct->precio = $request->precio;
-        $newProduct->stock = $request->stock;
-        $newProduct->img_product = $request->img_product;
-        $newProduct->comercio_id = $request->comercio_id;
-        if ($newProduct->save()) {
-            return response()->json(['code' => 200, 'data' => $newProduct], 200);
-        } else {
-            return response()->json(['code' => 530, 'message' => 'Error al crear un producto'], 530);
+        try {
+            $newOrder = new order();
+            $newOrder->user_id = Auth::user()->id;
+            $newOrder->name = $request->name;
+            $newOrder->reference = $request->reference;
+            $newOrder->date = $request->date;
+            $newOrder->payment_type_vp = 1;
+            $newOrder->payment_state = 1;
+            $newOrder->total = 0;
+            $newOrder->direccion = $request->direccion;
+            $newOrder->order_state = 1;
+            $newOrder->state = 1;
+            $newOrder->save();
+
+            foreach ($request->product as $producto){
+                $productos = new order_product();
+                $productos->product_id = $producto;
+                $productos->order_id = $newOrder->id;
+                $productos->save();
+            }
+            return $this->respond('done', $newOrder);
+        } catch (\Throwable $e) {
+            return $this->respond('server error', [], $e->getMessage());
         }
         
     }

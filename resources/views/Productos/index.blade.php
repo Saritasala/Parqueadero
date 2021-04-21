@@ -60,7 +60,7 @@
                                                 </a>
 
                                                 <button class="btn btn-sm btn-danger btnEraseProduct" title="Eliminar">
-                                                    <i class="fas fa-trash-alt"></i></button>
+                                                    <i class="nc-icon nc-box"></i></button>
                                             </td>
                                             @else
                                             <td>No hay productos registrados</td>
@@ -80,3 +80,7 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+
+@endpush

@@ -6,11 +6,14 @@ use App\product;
 use App\comercio;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RestActions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
+    use RestActions;
+
     public function index(){
     $user = Auth::user();
         if($user->role_id==1){
@@ -28,13 +31,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $create = $this->funCreate($request)->getData();
-        if($create->code == 200){
-            $request->session()->flash('success', 'Creado el producto con exito');
-            return redirect()->route('product.index');
-        }else{
-            return back();
-        }
+        $create = $this->funCreate($request);
+        return redirect()->route('product.index')->withStatus(__('Producto registrado exitosamente.'));
     }
 
     public function edit($id)
@@ -45,11 +43,11 @@ class ProductController extends Controller
 
     public function update(Request $request, $id){
         $request->merge(['id' => $id]);
-        $store = $this->funUpdate($request)->getData();
-        if($store->code == 200){
-            return back()->with('success', 'Actualizado con exito');
+        $store = $this->funUpdate($request, $id);
+        if($store['status'] == 200){
+            return back()->withStatus(__('Producto actualizado exitosamente.'));
         }else{
-            return back();
+            return back()->withStatus(__('Hubo un error, intentelo nuevamente.'));
         }
     }
 
@@ -69,24 +67,24 @@ class ProductController extends Controller
             'description' => 'required|max:500',
             'precio' => 'required',
             'stock' => 'required|max:100',
-            'img_product' => 'required|image|mimes:jpg,jpeg,png|max:200000',
+            'imgProduct' => 'required|image|mimes:jpg,jpeg,png|max:200000',
             'comercio_id' => 'required|exists:comercios,id',
         ]);
-       
+        try {
         $newProduct = new Product();
         $newProduct->title = $request->title;
         $newProduct->description = $request->description;
         $newProduct->precio = $request->precio;
         $newProduct->stock = $request->stock;
         if ($request->imgProduct) {
-                $newProduct->img_product = $request->img_product->store('product_images', 'public');
+                $newProduct->img_product = $request->imgProduct->store('product_images', 'public');
             }
         $newProduct->comercio_id = $request->comercio_id;
         $newProduct->state = 1;
-        if ($newProduct->save()) {
-            return response()->json(['code' => 200, 'data' => $newProduct], 200);
-        } else {
-            return response()->json(['code' => 530, 'message' => 'Error al crear un producto'], 530);
+        $newProduct->save();
+        return $this->respond('done', $newProduct);
+        } catch (\Throwable $e) {
+            return $this->respond('server error', [], $e->getMessage());
         }
     
     }
@@ -111,9 +109,9 @@ class ProductController extends Controller
             $model = product::find($request->id);
             $model->update(['title'=>$title, 'description'=>$description, 'precio'=>$precio,
             'stock'=>$stock,'img_product'=>$img_product,'comercio_id'=>$comercio_id,'state' => $state]);
-            return response()->json(['code' => 200, 'data' => $model], 200);
+            return $this->respond('done', $model);
 		} catch (\Throwable $e) {
-            return response()->json(['code' => 400, 'message' => 'Error al actualizar el producto'], 400);
+            return $this->respond('server error', [], $e->getMessage());
 		}
     }
 
@@ -121,14 +119,14 @@ class ProductController extends Controller
         $request->validate([
             'id' => 'required|exists:products,id'
          ]);
-
-         $model = product::where('id', $request->id)->first();
-         $model->state = 3;
-
-         if ($model->update()) {
-            return response()->json(['code' => 200, 'data' => $model], 200);
-         } else {
-            return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
+         dd($request);
+         try{
+            $model = product::where('id', $request->id)->first();
+            $model->state = 3;
+            $model->update();
+            return $this->respond('done', []);
+        } catch (\Throwable $e) {
+            return $this->respond('server error', [], $e->getMessage());
         }
     }
 }

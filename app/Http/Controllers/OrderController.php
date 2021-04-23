@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\product;
 use App\order;
 use App\order_product;
+use App\Pedido;
 use DB;
 use App\Http\Controllers\RestActions;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,6 @@ class OrderController extends Controller
         $request->validate([
             'name' => 'required|max:499',
             'reference' => 'required|max:500',
-            'product' => 'required|array',
             'date' => 'required|max:100',
             'direccion'=> 'required',
         ]);
@@ -79,13 +79,6 @@ class OrderController extends Controller
             $newOrder->order_state = 1;
             $newOrder->state = 1;
             $newOrder->save();
-
-            foreach ($request->product as $producto){
-                $productos = new order_product();
-                $productos->product_id = $producto;
-                $productos->order_id = $newOrder->id;
-                $productos->save();
-            }
             return $this->respond('done', $newOrder);
         } catch (\Throwable $e) {
             return $this->respond('server error', [], $e->getMessage());
@@ -118,6 +111,29 @@ class OrderController extends Controller
             return response()->json(['code' => 400, 'message' => 'Error al actualizar el producto'], 400);
         }
     }
+
+    public function funShow(Request $request)
+    {
+       $request->validate([
+          'id' => 'required|exists:order,id'
+       ]);
+       $element = order::where('id', $request->id)->first();
+       return response()->json(['code' => 200, 'data' => $element], 200);
+    }
+
+    public function factura($id)
+   {
+      request()->merge(['id' => $id]);
+      $data = $this->funShow(request())->original;
+      $actualState = $data['data'];
+
+      if ($data['code'] == 200) {
+         $pdf = PDF::loadView('orders.facturas.factura', ['data' => $data['data']]);
+         return $pdf->download('factura.pdf');
+      }
+   }
+
+
     
     public function funDelete(Request $request){
         $request->validate([

@@ -14,7 +14,7 @@ class order_product extends Model
     protected $table = 'order_products';
 
     public function getOrder(){
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(order::class, 'order_id');
     }
 
     public function getProducto(){

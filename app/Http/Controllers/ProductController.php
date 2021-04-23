@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RestActions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -42,10 +43,12 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+        
         $request->merge(['id' => $id]);
         $store = $this->funUpdate($request, $id);
+        dd($store);
         if($store['status'] == 200){
-            return back()->withStatus(__('Producto actualizado exitosamente.'));
+            return redirect()->route('product.index')->withStatus(__('Producto actualizado exitosamente.'));
         }else{
             return back()->withStatus(__('Hubo un error, intentelo nuevamente.'));
         }
@@ -95,31 +98,34 @@ class ProductController extends Controller
             'description' => 'required|max:500',
             'precio' => 'required',
             'stock' => 'required|max:100',
-            'img_product' => 'required|image|mimes:jpg,jpeg,png|max:499',
+            'imgProduct' => 'required|image|mimes:jpg,jpeg,png|max:499',
             'comercio_id' => 'required|exists:comercios,id',
         ]);
         try{
-            $title = $request->title;
-            $description= $request->description;
-            $precio = $request->precio;
-            $stock = $request->stock;
-            $img_product = $request->img_product;
-            $comercio_id = $request->comercio_id;
-            $state = $request->state;
-            $model = product::find($request->id);
-            $model->update(['title'=>$title, 'description'=>$description, 'precio'=>$precio,
-            'stock'=>$stock,'img_product'=>$img_product,'comercio_id'=>$comercio_id,'state' => $state]);
-            return $this->respond('done', $model);
+            $Producto = Product::where('id', $request->id)->first();
+            $Producto->title = $request->title;
+            $Producto->description = $request->description;
+            $Producto->precio = $request->precio;
+            $Producto->stock = $request->stock;
+            $Producto->comercio_id = $request->comercio_id;
+            if ($request->imgProduct) {
+                Storage::disk("public")->delete($Producto->img_product);
+                $Producto->img_product = $request->imgProduct->store('product_images', 'public');
+                $Producto->update();
+            }
+            return $this->respond('done', $Producto);
 		} catch (\Throwable $e) {
             return $this->respond('server error', [], $e->getMessage());
 		}
     }
 
     public function funDestroy($id){
-        if(product::where('id', $id)->delete()){
+        $model = product::where('id', $id)->first();
+        $model->state = 3;
+        if ($model->update()) {
             return $this->respond('done', []);
         }else{
             return $this->respond('server error', []);
-        } 
+        }
     }
 }

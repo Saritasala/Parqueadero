@@ -40,23 +40,22 @@
                                 <tbody>
                                     
                                         <tr id="">
-                                            <td></td>
-                                           
+                                            <td>Agos</td>
+                                            <td>3146196681</td>
+                                            <td>argos@argos.co</td>
                                                 <td><span class="badge badge-pill badge-success">Activo</span></td>
                                         
-                                                <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
+    
                                            
                                             <td>
                                                 <a class="btn btn-warning btn-sm" title="Editar"
                                                 href=""><i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
-                                            </td>
-                                            <td>
+                                            
                                                 <a class="btn btn-info btn-sm" title="Detalles"
                                                 href=""><i class="nc-icon nc-badge"></i>
                                                 </a>
-                                            </td>
-                                            <td>
+                                            
                                                 <a class="btn btn-danger btn-sm" title="Eliminar"
                                                 href=""><i class="nc-icon nc-simple-delete"></i>
                                                 </a>

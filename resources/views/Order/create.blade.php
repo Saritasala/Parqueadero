@@ -33,18 +33,6 @@
                                             </span>
                                         @endif
                                     </div>
-                                    
-                                    <div class="form-group col-md-6 col-sm-12">
-                                        <label class="form-control-label" for="product[]">Productos *</label>
-                                        <select name="product[]" class="form-control select2" multiple="multiple" required>
-                                            <option value="" disabled> Seleccione el/los productos</option>
-                                            @if(!@empty($producto))
-                                            @foreach ($producto as $product)
-                                            <option value="{{$product->id}}">{{$product->title}}</option>
-                                            @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label class="form-control-label" for="input-direccion">Direccion *</label>
                                         <input type="text" name="direccion" id="input-direccion" value="{{old('direccion')}}"
@@ -103,7 +91,6 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
 @push('scripts')
     <script>
@@ -111,4 +98,6 @@
     $('.select2').select2();
 });
 </script>
+
+
 @endpush

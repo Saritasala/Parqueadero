@@ -30,14 +30,20 @@ Route::get('/productos', 'ProductController@index')->name('product.index');
 Route::get('/productos/crear', 'ProductController@create')->name('product.create');
 Route::post('/productos', 'ProductController@store')->name('product.store');
 Route::get('/productos/editar/{id}', 'ProductController@edit')->name('product.edit');
-Route::post('/productos/editar/{id}', 'ProductController@update')->name('product.update');
+Route::put('/productos/editar/{id}', 'ProductController@update')->name('product.update');
 Route::delete('/productos/eliminar/{id}', 'ProductController@funDestroy');
 
 //Ordenes
 Route::get('/ordenes', 'OrderController@index')->name('order.index');
 Route::get('/ordenes/crear', 'OrderController@create')->name('order.create');
-Route::post('/productos/crear', 'OrderController@store')->name('order.store');
+Route::post('/ordenes', 'OrderController@store')->name('order.store');
 Route::get('/ordenes/editar', 'OrderController@edit')->name('order.edit');
+Route::get('factura/{id}', 'OrderController@factura')->name('factura');
+
+//Pedidos
+
+Route::get('/pedidos/crear/{id}', 'PedidosController@create')->name('pedidos.create');
+Route::post('/pedidos', 'PedidosController@store')->name('pedidos.store');
 
 //Comercios
 Route::get('/comercio', 'ComercioController@index')->name('comercio.index');

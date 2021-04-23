@@ -34,6 +34,7 @@
                                         <th scope="col">Apellido</th>
                                         <th scope="col">Correo</th>
                                         <th scope="col">Rol</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col">Accion</th>
                                         <th></th>
                                     </tr>
@@ -41,23 +42,23 @@
                                 <tbody>
                                     
                                         <tr id="">
-                                            <td></td>
-                                           
+                                            <td>Sara</td>
+                                            <td>Salazar</td>
+                                            <td>saritasalazar18@gmail.com</td>
+                                            <td>Empleado</td>
                                                 <td><span class="badge badge-pill badge-success">Activo</span></td>
                                         
-                                                <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
+                                               
                                            
                                             <td>
                                                 <a class="btn btn-warning btn-sm" title="Editar"
                                                 href=""><i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
-                                            </td>
-                                            <td>
+                                           
                                                 <a class="btn btn-info btn-sm" title="Detalles"
                                                 href=""><i class="nc-icon nc-badge"></i>
                                                 </a>
-                                            </td>
-                                            <td>
+                                            
                                                 <a class="btn btn-danger btn-sm" title="Eliminar"
                                                 href=""><i class="nc-icon nc-simple-delete"></i>
                                                 </a>

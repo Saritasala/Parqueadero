@@ -44,7 +44,7 @@
                                             <td>{{$comercio->number}}</td>
                                             <td>{{$comercio->email}}</td>
                                             <td>{{$comercio->direccion}}</td>
-                                            @if($product->state==1)
+                                            @if($comercio->state == 1)
                                             <td><span class="badge badge-pill badge-success">Activo</span></td>
                                             @else
                                             <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
@@ -59,7 +59,7 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                   
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

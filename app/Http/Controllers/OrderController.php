@@ -45,6 +45,12 @@ class OrderController extends Controller
         return view('Order.edit', ['order' =>$order]);
         
     }
+
+    public function show($id){
+        $element = order::where('id', $id)->with('getUser')->first();
+        $product = Pedido::where('order_id', $id)->with('getProduct')->get();
+        return view('Order.details', ['element'=>$element, 'product'=>$product]);
+    }
     
     public function update(Request $request, $id){
         $request->merge(['id' => $id]);

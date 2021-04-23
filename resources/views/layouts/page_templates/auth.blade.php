@@ -47,11 +47,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Mi perfil') }}</a>
                            
-                             
-                                 <a class="dropdown-item"  href="">
-                                  
-                                 </a>
-                            
+                     
                            <a class="dropdown-item" onclick="logout()">{{ __('Cerrar sesion') }}</a>
                         </div>
                      </div>

@@ -42,6 +42,11 @@ class ProductController extends Controller
         return view('Productos.edit', ['product'=>$product]);
     }
 
+    public function show($id){
+        $product = product::where('id', $id)->with('getComercio')->first();
+        return view('Productos.details', ['product'=>$product]);
+    }
+
     public function update(Request $request, $id)
     {
         $request->merge(['id' => $id]);  

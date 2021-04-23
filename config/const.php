@@ -12,4 +12,10 @@ return [
     ],
 
     
+    'user_states' => [
+        0 => 'Inactivo',
+        1 => 'Activo'
+    ],
+
+    
 ];

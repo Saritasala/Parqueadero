@@ -41,6 +41,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function signOut(Request $request)
+    {
+        $response=$this->logout($request);
+        return response()->json($response,$response['status']);
+    }
+
+    public function logout($request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return $this->respond('done',null,'Session cerrada con exito');
+    }
+
     public function login(Request $request)
     {
        $request->validate([

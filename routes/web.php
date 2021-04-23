@@ -32,6 +32,7 @@ Route::post('/productos', 'ProductController@store')->name('product.store');
 Route::get('/productos/editar/{id}', 'ProductController@edit')->name('product.edit');
 Route::put('/productos/editar/{id}', 'ProductController@update')->name('product.update');
 Route::delete('/productos/eliminar/{id}', 'ProductController@funDestroy');
+Route::get('/productos/mas/{id}', 'ProductController@show')->name('product.show');
 
 //Ordenes
 Route::get('/ordenes', 'OrderController@index')->name('order.index');
@@ -39,6 +40,7 @@ Route::get('/ordenes/crear', 'OrderController@create')->name('order.create');
 Route::post('/ordenes', 'OrderController@store')->name('order.store');
 Route::get('/ordenes/editar', 'OrderController@edit')->name('order.edit');
 Route::get('factura/{id}', 'OrderController@factura')->name('factura');
+Route::get('/ordenes/mas/{id}', 'OrderController@show')->name('order.show');
 
 //Pedidos
 
@@ -59,6 +61,7 @@ Route::get('/usuarios/crear', 'UsuariosController@create')->name('usuarios.creat
 Route::get('/usuarios/editar/{id}', 'UsuariosController@edit')->name('usuarios.edit');
 Route::put('/usuarios/editar/{id}', 'UsuariosController@update')->name('usuarios.update');
 Route::post('/usuarios', 'UsuariosController@store')->name('usuarios.store');
+Route::delete('/usuario/eliminar/{id}', 'ComercioController@funDelete');
 
 //Listado de ordenes
 Route::get('/Lista', 'ListOrderController@index')->name('listado.index');
@@ -67,3 +70,5 @@ Route::get('/Lista/mas/{id}', 'ListOrderController@show')->name('listado.show');
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
 Route::put('profile', 'ProfileController@update')->name('profile.update');
 Route::put('profile/password', 'ProfileController@password')->name('profile.password');
+
+Route::post('logout', 'LoginController@signOut')->name('logout');

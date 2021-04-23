@@ -56,7 +56,7 @@
                                                 </a>
                 
                                                 <a class="btn btn-info btn-sm" title="Detalles"
-                                                href=""><i class="nc-icon nc-badge"></i>
+                                                href="{{route('product.show',[$product->id])}}"><i class="nc-icon nc-badge"></i>
                                                 </a>
 
                                                 <button class="btn btn-sm btn-danger btnEraseProduct" title="Eliminar">

@@ -12,7 +12,7 @@
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
                     <p class="text-white">Usuarios</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$usuario}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>
@@ -22,7 +22,7 @@
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
                     <p class="text-white">Productos</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$productos}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
                     <p class="text-white">Comercios</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$comercios}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
                     <p class="text-white">Ordenes</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >0</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$ordenes}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>

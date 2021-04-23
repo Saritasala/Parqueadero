@@ -54,12 +54,9 @@
                                                 <a class="btn btn-warning btn-sm" title="Agregar Producto"
                                                 href="{{route('pedidos.create',[$order->id])}}">Producto</a>
 
-                                                <a class="btn btn-warning btn-sm" title="Editar"
-                                                href=""><i class="nc-icon nc-ruler-pencil"></i>
-                                                </a>
-                                            
+                                    
                                                 <a class="btn btn-info btn-sm" title="Detalles"
-                                                href=""><i class="nc-icon nc-badge"></i>
+                                                href="{{route('order.show',[$order->id])}}"><i class="nc-icon nc-badge"></i>
                                                 </a>
                                            
                                                 <a class="btn btn-danger btn-sm" title="Eliminar"

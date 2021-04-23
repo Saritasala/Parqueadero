@@ -22,8 +22,9 @@ class ComercioController extends Controller
 
     public function store(Request $request)
     {
-        $create = $this->funCreate($request)->getData();
-        return redirect()->route('comercio.index')->withStatus(__('Comercio registrado exitosamente.'));
+        $create = $this->funCreate($request);
+        //dd($create);
+        return redirect()->route('comercio.index')->with('status',__('Comercio registrado exitosamente.'));
             
     }
 
@@ -55,15 +56,15 @@ class ComercioController extends Controller
         //Funciones**
 
     public function funCreate(Request $request){
+        
         $request->validate([
             'name' => 'required|max:499',
             'description' => 'required|max:500',
             'number' => 'required|max:10',
             'direccion' => 'required|max:100',
             'email' => 'required|max:100',
-            
         ]);
-        
+        //dd($request);
         try {
             $newComercio = new comercio();
             $newComercio->name = $request->name;
@@ -73,7 +74,9 @@ class ComercioController extends Controller
             $newComercio->email = $request->email;
             $newComercio->state = 1;
             $newComercio->save();
-            return $this->respond('done', $newComercio);
+            //dd($newComercio);
+            return $newComercio;
+            
             } catch (\Throwable $e) {
                 return $this->respond('server error', [], $e->getMessage());
             }

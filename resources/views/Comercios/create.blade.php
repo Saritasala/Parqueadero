@@ -23,12 +23,12 @@
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-name">Descripcion *</label>
-                            <textarea type="text" name="last_name" id="input-name" value="{{old('description')}}"
-                                class="form-control" placeholder="Nombre" required></textarea>
+                            <textarea type="text" name="description" id="input-description"
+                                class="form-control" placeholder="Nombre" required>{{old('description')}}</textarea>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-number">Télefono *</label>
-                            <input type="text" name="number" id="input-number" value="{{old('number')}}"
+                            <input type="number" name="number" id="input-number" value="{{old('number')}}"
                                 class="form-control" placeholder="Telefono" required>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-direccion">Direccion *</label>
-                            <input type="email" name="direccion" id="input-direccion" value="{{old('direccion')}}"
+                            <input type="text" name="direccion" id="input-direccion" value="{{old('direccion')}}"
                                 class="form-control" placeholder="Direccion" required>
                         </div>
                     </div>
@@ -46,7 +46,6 @@
                         <div class="row justify-content-center">
                             <button type="submit" class="btn btn-primary btn-round">Crear Comercio</button>
                         </div>
-                    
                 </form>
             </div>
         </div>

@@ -49,7 +49,7 @@ Route::post('/pedidos', 'PedidosController@store')->name('pedidos.store');
 Route::get('/comercio', 'ComercioController@index')->name('comercio.index');
 Route::get('/comercio/crear', 'ComercioController@create')->name('comercio.create');
 Route::get('/comercio/editar/{id}', 'ComercioController@edit')->name('comercio.edit');
-Route::post('/comercio', 'ComercioControlle@store')->name('comercio.store');
+Route::post('/comercio', 'ComercioController@store')->name('comercio.store');
 Route::put('/comercio/editar/{id}', 'ComercioController@update')->name('comercio.update');
 Route::delete('/comercio/eliminar/{id}', 'ComercioController@funDestroy');
 

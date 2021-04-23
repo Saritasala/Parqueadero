@@ -13,8 +13,9 @@
             </div>
             @endif
             <div class="col-md-12">
-                <form action="{{route('comercio.update', [$comerce->id])}})}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('comercio.update', [$comerce->id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-name">Nombre *</label>
@@ -23,8 +24,8 @@
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-description">Descripcion *</label>
-                            <textarea type="text" name="description" id="input-description" value="{{$comerce->description}}"
-                                class="form-control" placeholder="Descripcion" required></textarea>
+                            <textarea type="text" name="description" id="input-description"
+                                class="form-control" placeholder="Descripcion" required>{{$comerce->description}}</textarea>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-number">Télefono *</label>
@@ -38,7 +39,7 @@
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-direccion">Direccion *</label>
-                            <input type="email" name="direccion" id="input-direccion" value="{{$comerce->direccion}}"
+                            <input type="text" name="direccion" id="input-direccion" value="{{$comerce->direccion}}"
                                 class="form-control" placeholder="Direccion" required>
                         </div>
                     </div>

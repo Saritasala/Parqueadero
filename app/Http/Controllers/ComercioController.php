@@ -31,7 +31,8 @@ class ComercioController extends Controller
     public function edit( $id)
     {
         $comerce= comercio::where('id', $id)->first();
-        return view('Comercio.edit', ['comerce'=>$comerce]);
+        //dd($comerce);
+        return view('Comercios.edit', ['comerce'=>$comerce]);
     }
 
     public function update(Request $request, $id){
@@ -44,7 +45,7 @@ class ComercioController extends Controller
         $comerce->email = $request->email;
         $comerce->direccion = $request->direccion;
         if($comerce->update()){
-            return redirect()->route('product.index')->with('status',__('Producto actualizado exitosamente.'));
+            return redirect()->route('comercio.index')->with('status',__('Comercio actualizado exitosamente.'));
         }else{
             return back();
         }

@@ -56,8 +56,9 @@ Route::delete('/comercio/eliminar/{id}', 'ComercioController@funDestroy');
 //Usuarios
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios.index');
 Route::get('/usuarios/crear', 'UsuariosController@create')->name('usuarios.create');
-Route::get('/usuarios/editar', 'UsuariosController@edit')->name('usuarios.edit');
-Route::put('/usuarios/editar/{id}', 'ComercioController@update')->name('usuarios.update');
+Route::get('/usuarios/editar/{id}', 'UsuariosController@edit')->name('usuarios.edit');
+Route::put('/usuarios/editar/{id}', 'UsuariosController@update')->name('usuarios.update');
+Route::post('/usuarios', 'UsuariosController@store')->name('usuarios.store');
 
 //Listado de ordenes
 Route::get('/Lista', 'ListOrderController@index')->name('listado.index');

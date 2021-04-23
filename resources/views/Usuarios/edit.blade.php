@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label class="form-control-label" for="input-phone">Télefono *</label>
-                                <input type="text" name="phone" id="input-phone" value="{{$user->number}}"
+                                <input type="text" name="phone" id="input-phone" value="{{$user->phone}}"
                                     class="form-control" placeholder="Telefono" required>
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
@@ -39,18 +39,32 @@
                                     class="form-control" placeholder="Email" required>
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
-                                <label class="form-control-label" for="input-password">Role *</label>
-                                <select name="role" id="" class="form-control">
-                                    <option value="" selected disabled> Seleccione un Role</option>
-                                   
+                                <label class="form-control-label" for="input-rol">Roles *</label>
+                                <select name="rol_id" id="" class="form-control">
+                                    @foreach($roles as $rol)
+                                    <option value="{{$rol->id}}" {{$rol->id == $user->getRole->id ? 'selected' : ''}}>
+                                        {{$rol->name}}
+                                    </option>
+                                    @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="form-control-label" for="input-password">Contraseña *</label>
+                                <input type="number" name="password" id="input-password" value="{{$user->password}}"
+                                    class="form-control" placeholder="Contraseña" required>
                             </div>
                            
                             <div class="form-group col-md-6 col-sm-12">
                                 <label class="form-control-label" for="input-state">Estado *</label>
                                 <select name="state" id="" class="form-control" required>
-                                    <option value="1"  > Activo</option>
-                                    <option value="0"  > Inactivo</option>
+                                    @if($user->state == 1)
+                                    <option value="1" selected> Activo</option>
+                                    <option value="0"> Inactivo</option>
+                                    @else
+                                    <option value="1"> Activo</option>
+                                    <option value="0" selected> Inactivo</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>

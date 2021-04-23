@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         @include('layouts.alerts')
-                        <form action="" method="POST">
+                        <form action="{{route('usuarios.store')}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="form-control-label" for="input-number">Télefono *</label>
-                                    <input type="text" name="number" id="input-number" value="{{old('phone')}}"
+                                    <input type="number" name="phone" id="input-number" value="{{old('phone')}}"
                                         class="form-control" placeholder="Telefono" required>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
@@ -43,13 +43,19 @@
                                         class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label class="form-control-label" for="input-password">Role *</label>
-                                    <select name="role" id="" class="form-control">
+                                    <label class="form-control-label" for="input-role">Role *</label>
+                                    <select name="role_id" id="" class="form-control">
                                         <option value="" selected disabled> Seleccione un Role</option>
-                                       
+                                        @foreach($roles as $rol)
+                                        <option value="{{$rol->id}}">{{$rol->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                    
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label class="form-control-label" for="input-password">Contraseña *</label>
+                                    <input type="password" name="password" id="input-password" value="{{old('password')}}"
+                                        class="form-control" placeholder="Contraseña" required>
+                                </div>
                             </div>
                             <div class="row justify-content-center">
                                 <button type="submit" class="btn btn-primary">Crear Usuario</button>

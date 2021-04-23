@@ -16,25 +16,38 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
     }
 
     public function create(){
-        $rol = roles::where('state',1)->get();    
-        return view('Usuarios.create', ['rol'=>$rol]);
+        $roles = roles::where('state',1)->get();    
+        return view('Usuarios.create', ['roles'=>$roles]);
     }
 
     public function store(Request $request)
     {
         $usuario = $this->funCreate($request);
-        return redirect()->route('usuario.index')->withStatus(__('Usuario registrado exitosamente.'));
+        return redirect()->route('usuarios.index')->with('status',__('Usuario registrado exitosamente.'));
     }
 
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();     
-        return view('Usuarios.edit', ['user'=>$user]);
+        $user = User::where('id', $id)->first();  
+        $roles = roles::where('state', 1)->get();   
+        return view('Usuarios.edit', ['user'=>$user, 'roles'=>$roles]);
     }
 
     public function update(Request $request, $id){
 
-        $request->merge(['id' => $id]);  
+        $request->merge(['id' => $id]);
+
+        //dd($request);
+        
+        $request->validate([
+            'name' => 'required|string|max:499',
+            'last_name' => 'required|string|max:500',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'password' => 'required',
+            'rol_id' => 'required',
+            'state' => 'required',
+        ]);
 
         $newuser = User::where('id', $id)->first();
         $newuser->name = $request->name;
@@ -42,11 +55,11 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
         $newuser->email = $request->email;
         $newuser->phone = $request->phone;
         $newuser->password = $request->password;
-        $newuser->role_id = $request->role_id;
+        $newuser->role_id = $request->rol_id;
         $newuser->state = $request->state;
         $newuser->update();
 
-        return redirect()->route('product.index')->with('status',__('Producto actualizado exitosamente.'));
+        return redirect()->route('usuarios.index')->with('status',__('Usuario actualizado exitosamente.'));
         
     }
 
@@ -56,10 +69,10 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
 
     public function funCreate(Request $request){
         $request->validate([
-            'name' => 'required|max:499',
-            'last_name' => 'required|max:500',
-            'email' => 'required',
-            'phone' => 'required|max:10',
+            'name' => 'required|string|max:499',
+            'last_name' => 'required|string|max:500',
+            'email' => 'required|email',
+            'phone' => 'required',
             'password' => 'required',
             'role_id' => 'required',
         ]);
@@ -69,11 +82,11 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
         $newuser->last_name = $request->last_name;
         $newuser->email = $request->email;
         $newuser->phone = $request->phone;
-        $newuser->password = $request->password;
+        $newuser->password = bcrypt($request->password);
         $newuser->role_id = $request->role_id;
-        $newuser->state = $request->state;
+        $newuser->state = 1;
         $newuser->save();
-        return $this->respond('done', $newuser);
+        return $newuser;
         } catch (\Throwable $e) {
         return $this->respond('server error', [], $e->getMessage());
     }

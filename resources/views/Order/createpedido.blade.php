@@ -92,9 +92,9 @@
                                             
                                               <div class="col-8">
                                                 <b style="font-size:12px; color:#999;" class="text-primary  font-weight-bold text-uppercase">Total</b><br>
-                                                
+                                                <span style="font-size:14px; float:right;">  $ {{ $total }}  </span> <br>
                                               </div>
-                                              <a href="{{ route('factura', ['id' => $data->id]) }}" class="btn btn-info btn-block"
+                                              <a href="{{ route('factura', ['id' => $order->id]) }}" class="btn btn-info btn-block"
                                                 target="_blank">Facturar</a>
                                         </div>
                                     </div>

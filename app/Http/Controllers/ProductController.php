@@ -38,8 +38,13 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $commerce = comercio::where('state',1)->get();
         $product = product::where('id', $id)->with('getComercio')->first();
-        return view('Productos.edit', ['product' =>$product]);
+        $data = array(
+            'commerce' => $commerce,
+            'product' => $product,
+        );
+        return view('Productos.edit', $data);
     }
 
     public function update(Request $request, $id){
@@ -99,7 +104,7 @@ class ProductController extends Controller
             'precio' => 'required',
             'stock' => 'required|max:100',
             'imgProduct' => 'required|image|mimes:jpg,jpeg,png|max:499',
-            'comercio_id' => 'required|exists:comercios,id',
+            'comercio_id' => 'required',
         ]);
         try{
             $Producto = Product::where('id', $request->id)->first();

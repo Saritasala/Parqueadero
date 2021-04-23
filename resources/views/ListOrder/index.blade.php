@@ -30,35 +30,31 @@
                                     <tr>
                                         <th scope="col">N°</th>
                                         <th scope="col">Nombre</th>
+                                        <th scope="col">Empleado</th>
                                         <th scope="col">Estado</th>
                                         <th scope="col">Accion</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                        <tr id="">
-                                            <td>1</td>
-                                            <td>Una orden</td>
-                                                <td><span class="badge badge-pill badge-success">Activo</span></td>
-                                        
-                                               
-                                           
+                                    @foreach ($orden as $order)
+                                        <tr id="id="{{$order->id}}">
+                                            <td>{{$order->id}}</td>
+                                            <td>{{$order->name}}</td>
+                                            <td>{{$order->getUser->name}}</td>
+                                            @if($order->state==1)
+                                            <td><span class="badge badge-pill badge-success">Activo</span></td>
+                                            @else
+                                            <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
+                                            @endif
                                             <td>
-                                                <a class="btn btn-warning btn-sm" title="Editar"
-                                                href=""><i class="nc-icon nc-ruler-pencil"></i>
-                                                </a>
-                                           
                                                 <a class="btn btn-info btn-sm" title="Detalles"
                                                 href=""><i class="nc-icon nc-badge"></i>
                                                 </a>
                                             
-                                                <a class="btn btn-danger btn-sm" title="Eliminar"
-                                                href=""><i class="nc-icon nc-simple-delete"></i>
-                                                </a>
                                             </td>
                                         </tr>
-                                   
+                                        @endforeach
                                 </tbody>
                             </table>
                         </div>

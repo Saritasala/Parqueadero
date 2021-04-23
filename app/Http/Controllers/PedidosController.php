@@ -17,14 +17,17 @@ class PedidosController extends Controller
 
     public function create($id){
         $order = order::where('id', $id)->first();
-        $pedido = Pedido::where('order_id', $id)->with('getProduct')->get();//->sum('total');
+        $pedido = Pedido::where('order_id', $id)->with('getProduct')->get();
+        $total = Pedido::where('order_id', $id)->with('getProduct')->get()->sum('total');
         $producto = product::where('state',1)->get(); 
         $data = array(
             'order' => $order,
             'pedido' => $pedido,
-            'producto' => $producto
+            'producto' => $producto,
+            'total' => $total
 
         );
+        
         return view('Order.createpedido',  $data);
     }
 
@@ -52,13 +55,9 @@ class PedidosController extends Controller
                 $newOrder->total = $orden;
                 $newOrder->save();
             }
-            $pedidos= Pedido::where('order_id', $request->order_id)->with('getProduct')->get();
-            $suma = 0;
-            foreach ($pedidos as $total) {
-                $suma+=$total->total;
+            $total = Pedido::where('order_id', $request->order_id)->with('getProduct')->get()->sum('total');
                 $model = order::find($request->order_id);
-                $model->update(['total'=>$suma]);
-            }
+                $model->update(['total'=>$total]);
             
             return $this->respond('done', $newOrder);
         } catch (\Throwable $e) {

@@ -36,6 +36,16 @@
                                         <input type="file" name="imgProduct" style="border-color: rgb(190, 190, 190)" class="form-control inputImg">
                                     </div>
                                     <div class="form-group">
+                                        <label>Comercio</label>
+                                        <select name="comercio_id" id="" class="form-control" required>
+                                            <option value="" > Seleccione Comercio</option>
+                                            @foreach ($commerce as $comercio)
+                                            <option {{old('commerce')==$comercio->id?'selected ':''}} value="{{$comercio->id}}">
+                                                {{$comercio->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Descripción</label>
                                         <textarea name="description" cols="30" rows="5"
                                             class="form-control" style="border-color: rgb(190, 190, 190)">{{$product->description}}</textarea>

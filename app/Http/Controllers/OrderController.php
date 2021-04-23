@@ -12,6 +12,7 @@ use App\Http\Controllers\RestActions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class OrderController extends Controller
 {
@@ -115,20 +116,23 @@ class OrderController extends Controller
     public function funShow(Request $request)
     {
        $request->validate([
-          'id' => 'required|exists:order,id'
+          'id' => 'required|exists:orders,id'
        ]);
-       $element = order::where('id', $request->id)->first();
-       return response()->json(['code' => 200, 'data' => $element], 200);
+        $element = order::where('id', $request->id)->with('getUser')->first();
+        $pedido = Pedido::where('order_id', $request->id)->with('getProduct')->get();
+        $data = array(
+            'element' =>$element,
+            'pedido' =>$pedido,
+        );
+       return response()->json(['code' => 200, 'data'=>$data], 200);
     }
 
     public function factura($id)
    {
       request()->merge(['id' => $id]);
       $data = $this->funShow(request())->original;
-      $actualState = $data['data'];
-
       if ($data['code'] == 200) {
-         $pdf = PDF::loadView('orders.facturas.factura', ['data' => $data['data']]);
+         $pdf = PDF::loadView('Order.factura.factura', ['data'=>$data['data']]);
          return $pdf->download('factura.pdf');
       }
    }

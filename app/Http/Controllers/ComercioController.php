@@ -11,109 +11,84 @@ use Illuminate\Support\Facades\Redirect;
 class ComercioController extends Controller
 {
     public function index(){
-        
-        return view('Comercios.index'); 
+        $comerce= comercio::where('state',[1,2])->get();
+        return view('Comercios.index', ['comerce'=>$comerce]); 
     }
 
-public function create(){
-        
-    return view('Comercios.create');
-}
-
-public function store(Request $request)
-{
-    $create = $this->funCreate($request)->getData();
-    if($create->code == 200){
-        $request->session()->flash('success', 'Creado el proyecto con exito');
-        return redirect()->route('index.product');
-    }else{
-        return back();
+    public function create(){
+            
+        return view('Comercios.create');
     }
-}
 
-public function edit( $id)
-{
-        
-return view('product.edit');
-}
-
-public function update(Request $request, $id){
-    $request->merge(['id' => $id]);
-    $store = $this->funUpdate($request)->getData();
-    if($store->code == 200){
-        return back()->with('success', 'Actualizado con exito');
-    }else{
-        return back();
+    public function store(Request $request)
+    {
+        $create = $this->funCreate($request)->getData();
+        return redirect()->route('comercio.index')->withStatus(__('Comercio registrado exitosamente.'));
+            
     }
-}
 
-    
-
-    //Funciones**
-
-public function funCreate(Request $request){
-    $request->validate([
-        'title' => 'required|max:499',
-        'description' => 'required|max:500',
-        'precio' => 'required',
-        'stock' => 'required|max:100',
-        'img_product' => 'required|image|mimes:jpg,jpeg,png|max:499',
-        'comercio_id' => 'required|exists:comercios,id',
-    ]);
-       
-    $newProduct = new comercio();
-    $newProduct->title = $request->title;
-    $newProduct->description = $request->description;
-    $newProduct->precio = $request->precio;
-    $newProduct->stock = $request->stock;
-    $newProduct->img_product = $request->img_product;
-    $newProduct->comercio_id = $request->comercio_id;
-    if ($newProduct->save()) {
-        return response()->json(['code' => 200, 'data' => $newProduct], 200);
-    } else {
-        return response()->json(['code' => 530, 'message' => 'Error al crear un producto'], 530);
+    public function edit( $id)
+    {
+        $comerce= comercio::where('id', $id)->first();
+        return view('Comercio.edit', ['comerce'=>$comerce]);
     }
-    
-}
 
-public function funUpdate(Request $request){
-    $request->validate([
-        'title' => 'required|max:499',
-        'description' => 'required|max:500',
-        'precio' => 'required',
-        'stock' => 'required|max:100',
-        'img_product' => 'required|image|mimes:jpg,jpeg,png|max:499',
-        'comercio_id' => 'required|exists:comercios,id',
-    ]);
-    try{
-        $title = $request->title;
-        $description= $request->description;
-        $precio = $request->precio;
-        $stock = $request->stock;
-        $img_product = $request->img_product;
-        $comercio_id = $request->comercio_id;
-        $state = $request->state;
-        $model = comercio::find($request->id);
-        $model->update(['title'=>$title, 'description'=>$description, 'precio'=>$precio,
-        'stock'=>$stock,'img_product'=>$img_product,'comercio_id'=>$comercio_id,'state' => $state]);
-         return response()->json(['code' => 200, 'data' => $model], 200);
-    } catch (\Throwable $e) {
-        return response()->json(['code' => 400, 'message' => 'Error al actualizar el producto'], 400);
-    }
-}
+    public function update(Request $request, $id){
+        $request->merge(['id' => $id]);
 
-public function funDelete(Request $request){
-    $request->validate([
-        'id' => 'required|exists:products,id'
-    ]);
-
-        $model = comercio::where('id', $request->id)->first();
-        $model->state = 3;
-
-        if ($model->update()) {
-            return response()->json(['code' => 200, 'data' => $model], 200);
-         } else {
-            return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
+        $comerce = comercio::where('id', $id)->first();
+        $comerce->name = $request->name;
+        $comerce->description = $request->description;
+        $comerce->number = $request->number;
+        $comerce->email = $request->email;
+        $comerce->direccion = $request->direccion;
+        if($comerce->update()){
+            return redirect()->route('product.index')->with('status',__('Producto actualizado exitosamente.'));
+        }else{
+            return back();
         }
+
     }
+
+        
+
+        //Funciones**
+
+    public function funCreate(Request $request){
+        $request->validate([
+            'name' => 'required|max:499',
+            'description' => 'required|max:500',
+            'number' => 'required|max:10',
+            'direccion' => 'required|max:100',
+            'email' => 'required|max:100',
+            
+        ]);
+        
+        try {
+            $newComercio = new comercio();
+            $newComercio->name = $request->name;
+            $newComercio->description = $request->description;
+            $newComercio->number = $request->number;
+            $newComercio->direccion = $request->direccion;
+            $newComercio->email = $request->email;
+            $newComercio->state = 1;
+            $newComercio->save();
+            return $this->respond('done', $newComercio);
+            } catch (\Throwable $e) {
+                return $this->respond('server error', [], $e->getMessage());
+            }
+        
+    }
+
+    
+    public function funDelete($id){
+        
+        $model = comercio::where('id', $id)->first();
+        $model->state = 3;
+        if ($model->update()) {
+            return $this->respond('done', []);
+        }else{
+            return $this->respond('server error', []);
+        }
+        }
 }

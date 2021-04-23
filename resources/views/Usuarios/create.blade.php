@@ -33,8 +33,8 @@
                                         class="form-control" placeholder="Nombre" required>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label class="form-control-label" for="input-phone">Télefono *</label>
-                                    <input type="text" name="phone" id="input-phone" value="{{old('phone')}}"
+                                    <label class="form-control-label" for="input-number">Télefono *</label>
+                                    <input type="text" name="number" id="input-number" value="{{old('phone')}}"
                                         class="form-control" placeholder="Telefono" required>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
@@ -49,18 +49,7 @@
                                        
                                     </select>
                                 </div>
-                                    <div class="form-group col-md-6 col-sm-12">
-                                        <label class="form-control-label" for="input-password">Contraseña *</label>
-                                        <div class="d-flex">
-                                            <input type="password" name="password" readonly v-model="password"
-                                                id="input-password"  class="form-control"
-                                                placeholder="Contraseña" required>
-                                            <button type="button" class="btn btn-primary my-0">Generar </button>
-                                        </div>
-                                        <input type="hidden" name="password_confirmation" readonly v-model="password"
-                                                id="input-password"  class="form-control"
-                                                placeholder="Contraseña" required>
-                                    </div>
+                                    
                             </div>
                             <div class="row justify-content-center">
                                 <button type="submit" class="btn btn-primary">Crear Usuario</button>

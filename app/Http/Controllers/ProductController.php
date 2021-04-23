@@ -37,26 +37,28 @@ class ProductController extends Controller
     }
 
     public function edit($id)
-    {
-        $commerce = comercio::where('state',1)->get();
+    {   
         $product = product::where('id', $id)->with('getComercio')->first();
-        $data = array(
-            'commerce' => $commerce,
-            'product' => $product,
-        );
-        return view('Productos.edit', $data);
+        return view('Productos.edit', ['product'=>$product]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
+        $request->merge(['id' => $id]);  
+
+        $Producto = Product::where('id', $id)->first();
+        $Producto->title = $request->title;
+        $Producto->description = $request->description;
+        $Producto->precio = $request->precio;
+        $Producto->stock = $request->stock;
         
-        $request->merge(['id' => $id]);
-        $store = $this->funUpdate($request, $id);
-        dd($store);
-        if($store['status'] == 200){
-            return redirect()->route('product.index')->withStatus(__('Producto actualizado exitosamente.'));
-        }else{
-            return back()->withStatus(__('Hubo un error, intentelo nuevamente.'));
+        if ($request->imgProduct) {
+            Storage::disk("public")->delete($Producto->img_product);
+            $Producto->img_product = $request->imgProduct->store('product_images', 'public');
+            $Producto->update();
         }
+
+        return redirect()->route('product.index')->with('status',__('Producto actualizado exitosamente.'));
     }
 
     public function destroy($id)
@@ -97,32 +99,7 @@ class ProductController extends Controller
     
     }
 
-    public function funUpdate(Request $request){
-        $request->validate([
-            'title' => 'required|max:499',
-            'description' => 'required|max:500',
-            'precio' => 'required',
-            'stock' => 'required|max:100',
-            'imgProduct' => 'required|image|mimes:jpg,jpeg,png|max:499',
-            'comercio_id' => 'required',
-        ]);
-        try{
-            $Producto = Product::where('id', $request->id)->first();
-            $Producto->title = $request->title;
-            $Producto->description = $request->description;
-            $Producto->precio = $request->precio;
-            $Producto->stock = $request->stock;
-            $Producto->comercio_id = $request->comercio_id;
-            if ($request->imgProduct) {
-                Storage::disk("public")->delete($Producto->img_product);
-                $Producto->img_product = $request->imgProduct->store('product_images', 'public');
-                $Producto->update();
-            }
-            return $this->respond('done', $Producto);
-		} catch (\Throwable $e) {
-            return $this->respond('server error', [], $e->getMessage());
-		}
-    }
+    
 
     public function funDestroy($id){
         $model = product::where('id', $id)->first();

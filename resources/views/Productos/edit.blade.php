@@ -13,7 +13,7 @@
             </div>
             @endif
             <div class="col-md-12">
-                <form action="{{route('product.update', [$product->id])}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('product.update', [$product->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <input type="hidden" name="" value="">
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-info btn-block mt-4 text-light" > Guardar </button>
+                            <button type="submit" class="btn btn-info btn-block mt-4 text-light" > Guardar </button>
                         </div>
                     </div>
                 </form>

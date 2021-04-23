@@ -38,26 +38,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                        <tr id="">
-                                            <td>Agos</td>
-                                            <td>3146196681</td>
-                                            <td>argos@argos.co</td>
-                                                <td><span class="badge badge-pill badge-success">Activo</span></td>
-                                        
+                                    @foreach ($comerce as $comercio)
+                                    <tr id="{{$comercio->id}}">
+                                            <td>{{$comercio->name}}</td>
+                                            <td>{{$comercio->number}}</td>
+                                            <td>{{$comercio->email}}</td>
+                                            <td>{{$comercio->direccion}}</td>
+                                            @if($product->state==1)
+                                            <td><span class="badge badge-pill badge-success">Activo</span></td>
+                                            @else
+                                            <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
+                                            @endif
     
-                                           
                                             <td>
                                                 <a class="btn btn-warning btn-sm" title="Editar"
-                                                href=""><i class="nc-icon nc-ruler-pencil"></i>
+                                                href="{{route('comercio.edit', [$comercio->id])}}"><i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
-                                            
-                                                <a class="btn btn-info btn-sm" title="Detalles"
-                                                href=""><i class="nc-icon nc-badge"></i>
-                                                </a>
-                                            
-                                                <a class="btn btn-danger btn-sm" title="Eliminar"
-                                                href=""><i class="nc-icon nc-simple-delete"></i>
+                                                <a class="btn btn-danger btn-sm btnEraseComercio" title="Eliminar"
+                                                ><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -17,8 +17,9 @@ class ListOrderController extends Controller
 
 
     public function show($id){
-        request()->merge(['id' => $id]);
-        $data = $this->funShow(request())->original;
+        $element = order::where('id', $id)->with('getUser')->first();
+        $product = Pedido::where('order_id', $id)->first();
+        return view('ListOrder.details', ['element'=>$element, 'product'=>$product]);
     }
 
 

@@ -49,7 +49,7 @@
                                             @endif
                                             <td>
                                                 <a class="btn btn-info btn-sm" title="Detalles"
-                                                href=""><i class="nc-icon nc-badge"></i>
+                                                href="{{route('listado.show', [$order->id])}}"><i class="nc-icon nc-badge"></i>
                                                 </a>
                                             
                                             </td>

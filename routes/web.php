@@ -48,15 +48,20 @@ Route::post('/pedidos', 'PedidosController@store')->name('pedidos.store');
 //Comercios
 Route::get('/comercio', 'ComercioController@index')->name('comercio.index');
 Route::get('/comercio/crear', 'ComercioController@create')->name('comercio.create');
-Route::get('/comercio/editar', 'ComercioController@edit')->name('comercio.edit');
+Route::get('/comercio/editar/{id}', 'ComercioController@edit')->name('comercio.edit');
+Route::post('/comercio', 'ComercioControlle@store')->name('comercio.store');
+Route::put('/comercio/editar/{id}', 'ComercioController@update')->name('comercio.update');
+Route::delete('/comercio/eliminar/{id}', 'ComercioController@funDestroy');
 
 //Usuarios
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios.index');
 Route::get('/usuarios/crear', 'UsuariosController@create')->name('usuarios.create');
 Route::get('/usuarios/editar', 'UsuariosController@edit')->name('usuarios.edit');
+Route::put('/usuarios/editar/{id}', 'ComercioController@update')->name('usuarios.update');
 
 //Listado de ordenes
 Route::get('/Lista', 'ListOrderController@index')->name('listado.index');
+Route::get('/Lista/mas/{id}', 'ListOrderController@show')->name('listado.show');
 
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
 Route::put('profile', 'ProfileController@update')->name('profile.update');

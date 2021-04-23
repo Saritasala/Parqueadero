@@ -13,80 +13,40 @@
             </div>
             @endif
             <div class="col-md-12">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="" value="">
-                    <div class="row mt-5">
-                        <div class="col-4">
-                            <div class="card">
-                                <img class="card-img-top imgUpdate"
-                                    src="https://scotturb.com/wp-content/uploads/2016/11/product-placeholder.jpg"
-                                    alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Datos del Comercio</h5>
-                                    <div class="form-group">
-                                        <label>Imagen *</label>
-                                        <input type="file" style="z-index: 100% !important" name="productImg" id="inputImg" class="form-control-file">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea name="description" cols="30" rows="5"
-                                            class="form-control" style="border-color: rgb(190, 190, 190)"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                <form action="{{route('comercio.update', [$comerce->id])}})}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-name">Nombre *</label>
+                            <input type="text" name="name" id="input-name" value="{{$comerce->name}}"
+                                class="form-control" placeholder="Nombre" required>
                         </div>
-                        <div class="col-8">
-                            <div class="card bg-secondary shadow mb-3">
-                                <div class="card-header border-0" style="background-color:rgb(24, 173, 116);" >
-                                    <h3 class="mb-0" style="text-align: center" >Características del comercio</h3>
-                                </div>
-                                <div class="card-body text-black" style="background-color: #ffff;" >
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label>Nombre *</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Nombre del Comercio"
-                                                value="">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Descripcion *</label>
-                                            <div class="input-group">
-                                                <input name="description" type="text" class="form-control" placeholder="Descripcion" required
-                                                    value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Telefono *</label>
-                                            <div class="input-group">
-                                                <input name="number" type="number" class="form-control" placeholder="Telefono"
-                                                    required value="">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label>Correo *</label>
-                                            <div class="input-group">
-                                                <input name="email" type="text" class="form-control" placeholder="Correo"
-                                                     value="">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Direccion *</label>
-                                            <div class="input-group">
-                                                <input name="direccion" type="text" class="form-control" placeholder="Direccion"
-                                                    required value="">
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-info btn-block mt-4 text-light" > Guardar </button>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-description">Descripcion *</label>
+                            <textarea type="text" name="description" id="input-description" value="{{$comerce->description}}"
+                                class="form-control" placeholder="Descripcion" required></textarea>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-number">Télefono *</label>
+                            <input type="text" name="number" id="input-number" value="{{$comerce->number}}"
+                                class="form-control" placeholder="Telefono" required>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-email">Email *</label>
+                            <input type="email" name="email" id="input-email" value="{{$comerce->email}}"
+                                class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-direccion">Direccion *</label>
+                            <input type="email" name="direccion" id="input-direccion" value="{{$comerce->direccion}}"
+                                class="form-control" placeholder="Direccion" required>
                         </div>
                     </div>
+                    
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-round">Actualizar Comercio</button>
+                        </div>
+                       
                 </form>
             </div>
         </div>

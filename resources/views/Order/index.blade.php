@@ -59,8 +59,7 @@
                                                 href="{{route('order.show',[$order->id])}}"><i class="nc-icon nc-badge"></i>
                                                 </a>
                                            
-                                                <a class="btn btn-danger btn-sm" title="Eliminar"
-                                                href=""><i class="nc-icon nc-simple-delete"></i>
+                                                <a class="btn btn-danger btn-sm btnEraseOrdenes" title="Eliminar"><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
                                             </td>
                                             @else

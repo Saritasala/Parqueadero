@@ -39,9 +39,9 @@
                                         <label>Comercio</label>
                                         <select name="comercio_id" id="" class="form-control" required>
                                             <option value="" > Seleccione Comercio</option>
-                                            @foreach ($commerce as $comercio)
-                                            <option {{old('commerce')==$comercio->id?'selected ':''}} value="{{$comercio->id}}">
-                                                {{$comercio->name}}</option>
+                                            @foreach ($product as $producto)
+                                            <option value="">
+                                            </option>
                                             @endforeach
                                         </select>
                                     </div>

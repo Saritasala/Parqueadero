@@ -41,6 +41,8 @@ Route::post('/ordenes', 'OrderController@store')->name('order.store');
 Route::get('/ordenes/editar', 'OrderController@edit')->name('order.edit');
 Route::get('factura/{id}', 'OrderController@factura')->name('factura');
 Route::get('/ordenes/mas/{id}', 'OrderController@show')->name('order.show');
+Route::get('/ordenes/eliminar/{id}', 'OrderController@funDelete');
+
 
 //Pedidos
 
@@ -53,7 +55,7 @@ Route::get('/comercio/crear', 'ComercioController@create')->name('comercio.creat
 Route::get('/comercio/editar/{id}', 'ComercioController@edit')->name('comercio.edit');
 Route::post('/comercio', 'ComercioController@store')->name('comercio.store');
 Route::put('/comercio/editar/{id}', 'ComercioController@update')->name('comercio.update');
-Route::delete('/comercio/eliminar/{id}', 'ComercioController@funDestroy');
+Route::delete('/comercio/eliminar/{id}', 'ComercioController@funDelete');
 
 //Usuarios
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios.index');

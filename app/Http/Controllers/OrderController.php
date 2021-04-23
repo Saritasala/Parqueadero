@@ -145,18 +145,13 @@ class OrderController extends Controller
 
 
     
-    public function funDelete(Request $request){
-        $request->validate([
-            'id' => 'required|exists:products,id'
-        ]);
-    
-            $model = product::where('id', $request->id)->first();
-            $model->state = 3;
-    
-            if ($model->update()) {
-                return response()->json(['code' => 200, 'data' => $model], 200);
-             } else {
-                return response()->json(['code' => 530, 'data' => null, 'message' => 'Error al eliminar'], 530);
-            }
+    public function funDelete($id){
+        $model = order::where('id', $id)->first();
+        $model->state = 3;
+        if ($model->update()) {
+            return $this->respond('done', []);
+        }else{
+            return $this->respond('server error', []);
         }
+    }
 }

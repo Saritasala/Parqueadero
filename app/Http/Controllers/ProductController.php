@@ -39,7 +39,8 @@ class ProductController extends Controller
     public function edit($id)
     {   
         $product = product::where('id', $id)->with('getComercio')->first();
-        return view('Productos.edit', ['product'=>$product]);
+        $comercio = comercio::where('state', 1)->get();
+        return view('Productos.edit', ['product'=>$product, 'comercio'=>$comercio]);
     }
 
     public function show($id){

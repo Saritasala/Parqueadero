@@ -3791,6 +3791,147 @@ $(document).ready(function () {
         });
       }
     });
+  }), $('.btnEraseComercio').on('click', function (e) {
+    console.log("INSIDE");
+    e.preventDefault();
+    var id = $(this).parents('tr').attr('id');
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "Este comercio será eliminado permanentemente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then(function (result) {
+      if (result.value) {
+        //console.log(id);
+        var token = document.querySelector('meta[name="token"]').getAttribute('content');
+        var route = '/comercio/eliminar/' + id;
+        $.ajax({
+          url: route,
+          headers: {
+            'X-CSRF-TOKEN': token
+          },
+          type: "delete",
+          dataType: "json",
+          beforeSend: function beforeSend() {
+            Swal.fire({
+              title: 'Cargando...',
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+              onOpen: function onOpen() {
+                Swal.showLoading();
+              }
+            });
+          },
+          success: function success(response) {
+            Swal.close();
+            Swal.fire('Eliminado', 'El comercio ha sido borrado satisfactoriamente', 'success').then(function () {
+              window.location.reload();
+            });
+          },
+          error: function error(xhr, status, _error2) {
+            Swal.fire('Error', 'Hemos tenido problemas, intente mas tarde', 'error');
+          }
+        });
+      }
+    });
+  }), $('.btnEraseUser').on('click', function (e) {
+    console.log("INSIDE");
+    e.preventDefault();
+    var id = $(this).parents('tr').attr('id');
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "Este usuario será eliminado permanentemente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then(function (result) {
+      if (result.value) {
+        //console.log(id);
+        var token = document.querySelector('meta[name="token"]').getAttribute('content');
+        var route = '/usuario/eliminar/' + id;
+        $.ajax({
+          url: route,
+          headers: {
+            'X-CSRF-TOKEN': token
+          },
+          type: "delete",
+          dataType: "json",
+          beforeSend: function beforeSend() {
+            Swal.fire({
+              title: 'Cargando...',
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+              onOpen: function onOpen() {
+                Swal.showLoading();
+              }
+            });
+          },
+          success: function success(response) {
+            Swal.close();
+            Swal.fire('Eliminado', 'El usuario ha sido borrado satisfactoriamente', 'success').then(function () {
+              window.location.reload();
+            });
+          },
+          error: function error(xhr, status, _error3) {
+            Swal.fire('Error', 'Hemos tenido problemas, intente mas tarde', 'error');
+          }
+        });
+      }
+    });
+  }), $('.btnEraseOrdenes').on('click', function (e) {
+    console.log("INSIDE");
+    e.preventDefault();
+    var id = $(this).parents('tr').attr('id');
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "Esta orden será eliminado permanentemente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then(function (result) {
+      if (result.value) {
+        //console.log(id);
+        var token = document.querySelector('meta[name="token"]').getAttribute('content');
+        var route = '/ordenes/eliminar/' + id;
+        $.ajax({
+          url: route,
+          headers: {
+            'X-CSRF-TOKEN': token
+          },
+          type: "delete",
+          dataType: "json",
+          beforeSend: function beforeSend() {
+            Swal.fire({
+              title: 'Cargando...',
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+              onOpen: function onOpen() {
+                Swal.showLoading();
+              }
+            });
+          },
+          success: function success(response) {
+            Swal.close();
+            Swal.fire('Eliminado', 'Esta orden ha sido borrado satisfactoriamente', 'success').then(function () {
+              window.location.reload();
+            });
+          },
+          error: function error(xhr, status, _error4) {
+            Swal.fire('Error', 'Hemos tenido problemas, intente mas tarde', 'error');
+          }
+        });
+      }
+    });
   });
 });
 
@@ -3814,8 +3955,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Facturacion_Gestion\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Facturacion_Gestion\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Gestion_de_Facturacion\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Gestion_de_Facturacion\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

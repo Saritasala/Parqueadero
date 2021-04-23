@@ -46,7 +46,7 @@
                                             <td>{{$usuario->last_name}}</td>
                                             <td>{{$usuario->email}}</td>
                                             <td>{{$usuario->getRole->name}}</td>
-                                            @if($usuarios->state==1)
+                                            @if($usuario->state==1)
                                             <td><span class="badge badge-pill badge-success">Activo</span></td>
                                             @else
                                             <td><span class="badge badge-pill badge-danger">Inactivo</span></td>
@@ -54,14 +54,14 @@
                                             
                                             <td>
                                                 <a class="btn btn-warning btn-sm" title="Editar"
-                                                href="{{route('usuarios.edit',[$usuarios->id])}}"><i class="nc-icon nc-ruler-pencil"></i>
+                                                href="{{route('usuarios.edit',[$usuario->id])}}"><i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
                                              
                                                 <a class="btn btn-danger btn-sm btnEraseUser" title="Eliminar"><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                   
+                                   @endforeach
                                 </tbody>
                             </table>
                         </div>

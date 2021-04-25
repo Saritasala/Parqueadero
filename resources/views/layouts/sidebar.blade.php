@@ -5,8 +5,12 @@
                 <img src="{{ asset('paper') }}/img/logo-small.png">
             </div>
         </a>
-        <a href="/" class="simple-text logo-normal">
+        <a href="/" class="simple-text logo-normal" >
+        @if(Auth::user()->role_id==1)
             {{ __('Administrador') }}
+        @else
+            {{ __('Empleado') }}
+        @endif
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -49,7 +53,7 @@
                     </a>
                 </li>
             @endif
-            
+
         </ul>
     </div>
 </div>

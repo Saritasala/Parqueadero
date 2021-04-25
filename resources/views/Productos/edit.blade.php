@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Comercio</label>
-                                        <select name="comercio_id" id="" class="form-control" required>
+                                        <select name="comercio_id" id="" class="form-control">
                                             <option value="" > Seleccione Comercio</option>
                                             @foreach ($product as $producto)
                                             <option value="">
@@ -77,7 +77,7 @@
                                             <div class="input-group">
                                                 <input name="stock" type="number" class="form-control" placeholder="Cantidad"
                                                     required value="{{$product->stock}}">
-                                                
+
                                             </div>
                                         </div>
                                     </div>

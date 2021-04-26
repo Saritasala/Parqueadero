@@ -44,20 +44,29 @@
                                         @endif
                                     </div>
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label class="form-control-label" for="input-payment_type_vp">Modo de pago *</label>
+                                    <label class="form-control-label" for="input-payment_type_vp">Estado de pago *</label>
                                     <select name="payment_type_vp" id="payment_type_vp" class="form-control">
-                                        <option value="" selected disabled> Seleccione modo de pago</option>
+                                        <option value="" selected disabled> Seleccione estado de pago</option>
+                                        @foreach($value as $val)
+                                            <option value="{{$val->id}}"
+                                                {{old('payment_type_vp') == $val->id ? 'selected' : ''}}>
+                                            {{$val->name}}</option>
+                                        @endforeach
                                        
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label class="form-control-label" for="input-payment_state">Estado de pago *</label>
+                                    <label class="form-control-label" for="input-payment_state">Metodo de pago *</label>
                                     <select name="payment_state" id="payment_state" class="form-control">
-                                        <option value="" selected disabled> Seleccione estado de pago</option>
+                                        <option value="" selected disabled> Seleccione metodo de pago</option>
+                                        @foreach($pay as $pey)
+                                            <option value="{{$pey->id}}"
+                                                {{old('payment_state') == $pey->id ? 'selected' : ''}}>
+                                            {{$pey->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label class="form-control-label" for="input-date">Fecha *</label>
                                         <input type="datetime-local" name="date" id="input-date" value="{{old('date')}}"

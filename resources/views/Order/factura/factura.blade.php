@@ -85,6 +85,11 @@
                         <b style="font-size:8px;color:#999">REFERENCIA </b><br /><span style="font-size:14px">
                             {{ $data['element']->reference}}</span>
                     </td>
+                    <td width="25%">
+                        <b style="font-size:8px;color:#999">METODO DE PAGO </b><br /><span style="font-size:14px">
+                            {{ $data['element']->getPayment->name}}</span>
+                    </td>
+                    
                 </tr>
             </table>
 
@@ -124,6 +129,7 @@
                                 {{$item->getProduct->precio}})</small>
                                 x({{ $item->stock}})</h4>
                         </td>
+                        
 
                         <td style='text-align:right'>
                             ${{ number_format($item->total) }}

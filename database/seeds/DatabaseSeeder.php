@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
                      RolesTableSeeder::class,
                      ParametrosSeeder::class,
                      ProductosTableSeeder::class,
-                     ComercioTableSeeder::class]);
+                     ComercioTableSeeder::class,
+                     ParametrosSeeder::class,
+                     Parametros_ValueTableSeeder::class]);
     }
 }

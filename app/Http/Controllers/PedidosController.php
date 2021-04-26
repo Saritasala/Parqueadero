@@ -5,6 +5,8 @@ use App\product;
 use App\order;
 use App\Pedido;
 use App\order_product;
+use App\parametros_value;
+use App\parametros;
 use DB;
 use App\Http\Controllers\RestActions;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +22,13 @@ class PedidosController extends Controller
         $pedido = Pedido::where('order_id', $id)->with('getProduct')->get();
         $total = Pedido::where('order_id', $id)->with('getProduct')->get()->sum('total');
         $producto = product::where('state',1)->get(); 
+        $value = parametros::where('state', 1)->get();
         $data = array(
             'order' => $order,
             'pedido' => $pedido,
             'producto' => $producto,
-            'total' => $total
+            'total' => $total,
+            'value' => $value
 
         );
         
@@ -48,6 +52,17 @@ class PedidosController extends Controller
             foreach($request->product as $producto){
                 $pedido = product::where('id', $producto)->first();
                 $orden = $pedido->precio * $request->stock;
+                if($pedido->stock > $request->stock){
+                    $newStock = $pedido->stock - $request->stock;
+                }else{
+                    $newStock =  $request->stock - $pedido->stock;
+                }
+                if($pedido->stock <= 0 ){
+                    return back()->withStatus(__('No hay suficientes productos.'));
+                   
+                }
+                
+                $pedido->update(['stock'=>$newStock]);
                 $newOrder = new Pedido();
                 $newOrder->order_id = $request->order_id;
                 $newOrder->product_id = $producto;
@@ -58,7 +73,7 @@ class PedidosController extends Controller
             $total = Pedido::where('order_id', $request->order_id)->with('getProduct')->get()->sum('total');
                 $model = order::find($request->order_id);
                 $model->update(['total'=>$total]);
-            
+        
             return $this->respond('done', $newOrder);
         } catch (\Throwable $e) {
             return $this->respond('server error', [], $e->getMessage());

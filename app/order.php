@@ -24,4 +24,12 @@ class order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getPayment_state(){
+        return $this->belongsTo(parametros::class, 'payment_state');
+    }
+
+    public function getPayment(){
+        return $this->belongsTo(parametros_value::class, 'payment_type_vp');
+    }
+
 }

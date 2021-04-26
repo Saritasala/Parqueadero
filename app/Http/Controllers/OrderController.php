@@ -7,6 +7,8 @@ use App\product;
 use App\order;
 use App\order_product;
 use App\Pedido;
+use App\parametros_value;
+use App\parametros;
 use DB;
 use App\Http\Controllers\RestActions;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +32,9 @@ class OrderController extends Controller
     
     public function create(){
         $producto = product::where('state',1)->get();   
-        return view('Order.create', ['producto'=>$producto]);
+        $value = parametros::where('state', 1)->get();
+        $pay = parametros_value::where('state', 1)->get();
+        return view('Order.create', compact('producto' ,'value' , 'pay'));
     }
     
     public function store(Request $request)
@@ -72,6 +76,8 @@ class OrderController extends Controller
             'reference' => 'required|max:500',
             'date' => 'required|max:100',
             'direccion'=> 'required',
+            'payment_state' => 'required',
+            'payment_type_vp' => 'required'
         ]);
         try {
             $newOrder = new order();
@@ -79,8 +85,8 @@ class OrderController extends Controller
             $newOrder->name = $request->name;
             $newOrder->reference = $request->reference;
             $newOrder->date = $request->date;
-            $newOrder->payment_type_vp = 1;
-            $newOrder->payment_state = 1;
+            $newOrder->payment_type_vp = $request->payment_type_vp;
+            $newOrder->payment_state = $request->payment_state;
             $newOrder->total = 0;
             $newOrder->direccion = $request->direccion;
             $newOrder->order_state = 1;
@@ -124,7 +130,7 @@ class OrderController extends Controller
        $request->validate([
           'id' => 'required|exists:orders,id'
        ]);
-        $element = order::where('id', $request->id)->with('getUser')->first();
+        $element = order::where('id', $request->id)->with('getUser', 'getPayment')->first();
         $pedido = Pedido::where('order_id', $request->id)->with('getProduct')->get();
         $data = array(
             'element' =>$element,
@@ -141,6 +147,11 @@ class OrderController extends Controller
          $pdf = PDF::loadView('Order.factura.factura', ['data'=>$data['data']]);
          return $pdf->download('factura.pdf');
       }
+
+        $model = order::find($id);
+        $model->update(['payment_type_vp'=>1]);
+
+
    }
 
 

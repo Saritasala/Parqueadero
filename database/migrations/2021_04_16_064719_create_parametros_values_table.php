@@ -15,7 +15,6 @@ class CreateParametrosValuesTable extends Migration
     {
         Schema::create('parametros_values', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('parameter_id');
             $table->string('name', 500);
             $table->integer('state')->default(1);
             $table->dateTime('created_at')->useCurrent();

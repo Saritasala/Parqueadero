@@ -40,7 +40,7 @@ class ProductController extends Controller
     {   
         $product = product::where('id', $id)->with('getComercio')->first();
         $comercio = comercio::where('state', 1)->get();
-        return view('Productos.edit', ['product'=>$product, 'comercio'=>$comercio]);
+        return view('Productos.edit', compact('product', 'comercio'));
     }
 
     public function show($id){

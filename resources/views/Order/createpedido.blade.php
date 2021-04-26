@@ -36,6 +36,7 @@
                                         </div>
                                         <div class="card-body text-black" style="background-color: #ffff;" >
                                             <div class="row">
+                                                <br>
                                                 <div class="form-group col">
                                                     <label class="form-control-label" id = "numbers" for="product[]" onchange = "myFunction()">Productos *</label>
                                                     <select name="product[]" class="form-control select2" multiple="multiple" required>
@@ -48,18 +49,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col">
-                                                    <label>Precio *</label>
-                                                    <div class="input-group">
-                                                        <input name="precio" type="number" class="form-control" placeholder="Precio" required
-                                                            value="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col">
                                                     <label>Cantidad *</label>
                                                     <div class="input-group">
                                                         <input name="stock" type="number" class="form-control" placeholder="Cantidad"
                                                             required value="">
-                                                        
                                                     </div>
                                                 </div>
                                             </div>

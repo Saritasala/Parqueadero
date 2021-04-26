@@ -67,7 +67,7 @@
                                             <div class="form-group">
                                                 <label>Orden # </label>
                                                 <input name="order_id" type="number" class="form-control" placeholder="Orden"
-                                                required value="{{$order->id}}">
+                                                required value="{{$order->id}}" disabled>
                                             </div>
                                             <div class="col-8">
                                                 <b style="font-size:12px; color:#999" class="text-primary  font-weight-bold text-uppercase">Productos</b><br>

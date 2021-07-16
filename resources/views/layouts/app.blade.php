@@ -9,6 +9,8 @@
     <meta name="token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <link type="text/css" href="{{ asset('paper') }}/css/paper-dashboard.css?v=v2.0.0" rel="stylesheet">
     <!-- Extra details for Live View on GitHub Pages -->
     <!-- Canonical SEO -->
@@ -106,6 +108,14 @@
     <script src="{{ asset('js') }}/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @stack('scripts')
+    <script>
+         $(document).ready(function() {
+            $('.selecttwo').select2({
+                theme: 'bootstrap4',
+            });
+        });
+
+    </script>
 
 </body>
 

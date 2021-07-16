@@ -24,6 +24,9 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
+                    <button type="button" class=" btn bg-info btn-sm text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                        Crear Empleado
+                    </button>
                         <a  href="{{route('usuarios.create')}}" class=" btn bg-info btn-sm text-white" >Crear Usuarios</a>
                     
                         <div class="table-responsive">
@@ -53,9 +56,9 @@
                                             @endif
                                             
                                             <td>
-                                                <a class="btn btn-warning btn-sm" title="Editar"
-                                                href="{{route('usuarios.edit',[$usuario->id])}}"><i class="nc-icon nc-ruler-pencil"></i>
-                                                </a>
+                                                <button class="btn btn-sm btn-warning btnEditarUsuario" title="Editar"
+                                                data-toggle="modal" data-target="#EditarUsuario"><i class="nc-icon nc-ruler-pencil"></i>
+                                                </button>
                                              
                                                 <a class="btn btn-danger btn-sm btnEraseUser" title="Eliminar"><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
@@ -74,4 +77,116 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
+      <div class="modal-body">
+      <form action="{{route('usuarios.store')}}" method="POST" enctype="multipart/form-data">
+         @csrf
+          <div class="form-group">
+          <label class="form-control-label" for="input-name">Nombre *</label>
+          <input type="text" name="name" id="input-name" value="{{old('name')}}" class="form-control" placeholder="Nombre" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-apellido">Apellido *</label>
+            <input type="text" name="apellido" id="input-apellido" value="{{old('apellido')}}" class="form-control" placeholder="Apellido" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-cedula">Cedula *</label>
+            <input type="number" name="cedula" id="input-cedula" value="{{old('cedula')}}" class="form-control" placeholder="Cedula" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-phone">Telefono *</label>
+            <input type="number" name="phone" id="input-phone" value="{{old('phone')}}" class="form-control" placeholder="Telefono" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-email">Email *</label>
+            <input type="email" name="email" id="input-email" value="{{old('email')}}" class="form-control" placeholder="Correo elecrtronico" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-rol">Rol *</label>
+          <select name="role_id" id="" class="form-control">
+            <option value="" selected disabled> Seleccione un Role</option>
+            @foreach($roles as $rol)
+            <option value="{{$rol->id}}">{{$rol->name}}</option>
+            @endforeach
+            </select>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-round">Crear Empleado</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de editar !-->
+
+  <div class="modal fade" id="EditarUsuario" tabindex="-1" role="dialog" aria-labelledby="EditarUsuarioLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="EditarUsuarioLabel">Editar Empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
+      <div class="modal-body">
+      <form action="usuario" method="POST" id="editUsuario" enctype="multipart/form-data">
+         @csrf
+          <div class="form-group">
+          <label class="form-control-label" for="input-name">Nombre *</label>
+          <input type="text" name="name" id="input-name" value="{{old('name')}}" class="form-control" placeholder="Nombre" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-apellido">Apellido *</label>
+            <input type="text" name="apellido" id="input-apellido" value="{{old('apellido')}}" class="form-control" placeholder="Apellido" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-cedula">Cedula *</label>
+            <input type="number" name="cedula" id="input-cedula" value="{{old('cedula')}}" class="form-control" placeholder="Cedula" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-phone">Telefono *</label>
+            <input type="number" name="phone" id="input-phone" value="{{old('phone')}}" class="form-control" placeholder="Telefono" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-email">Email *</label>
+            <input type="email" name="email" id="input-email" value="{{old('email')}}" class="form-control" placeholder="Correo elecrtronico" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-rol">Rol *</label>
+          <select name="role_id" id="" class="form-control">
+            <option value="" selected disabled> Seleccione un Role</option>
+            @foreach($roles as $rol)
+            <option value="{{$rol->id}}">{{$rol->name}}</option>
+            @endforeach
+            </select>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-round">Crear Empleado</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
 @endsection

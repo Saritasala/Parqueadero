@@ -56,13 +56,13 @@ $(document).ready(function () {
         })
     }),
 
-    $('.btnEraseComercio').on('click', function (e) {
+    $('.btnEraseVehiculo').on('click', function (e) {
         console.log("INSIDE");
         e.preventDefault()
         let id = $(this).parents('tr').attr('id');
         Swal.fire({
             title: '¿Esta seguro?',
-            text: "Este comercio será eliminado permanentemente",
+            text: "Este vehiculo será eliminado permanentemente",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -73,7 +73,7 @@ $(document).ready(function () {
             if (result.value) {
               //console.log(id);
               let token = document.querySelector('meta[name="token"]').getAttribute('content');
-              let route = '/comercio/eliminar/' + id;
+              let route = '/vehiculo/eliminar/' + id;
                 $.ajax({
                     url: route,
                     headers: {'X-CSRF-TOKEN' : token},
@@ -94,7 +94,7 @@ $(document).ready(function () {
                         Swal.close()
                         Swal.fire(
                             'Eliminado',
-                            'El comercio ha sido borrado satisfactoriamente',
+                            'El vehiculo ha sido borrado satisfactoriamente',
                             'success'
                         ).then(() => {
                             window.location.reload()
@@ -223,4 +223,22 @@ $(document).ready(function () {
             }
         })
     })
-})
+
+    $('.btnEditarUsuario').on('click', function (e) {
+        console.log("INSIDE");
+        e.preventDefault()
+        let btnEdit = document.getElementsByClassName('btnEditarUsuario');
+        let form = document.getElementById('editFormulario');
+        if(btnEdit == null){
+            return;
+        }
+        [].forEach.call(btnEdit, function (btn){
+            btn.addEvenListener('click', ()=>{
+                let usuario = btn.parentNode.parentNode;
+                let token = document.querySelector('meta[name="crsf-token"]').getAttribute('content');
+
+                fetch('/')
+            })
+        })
+    })
+});

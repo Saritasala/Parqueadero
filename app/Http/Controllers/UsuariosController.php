@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
 {
     public function index(){
         $user= User::where('state',[1,2])->with('getRole')->get();
-        
-        return view('Usuarios.index', ['user'=>$user]); 
+        $roles = roles::where('state',1)->get();
+        return view('Usuarios.index', compact('user', 'roles')); 
     }
 
     public function create(){

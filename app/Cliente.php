@@ -2,19 +2,13 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Cliente as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Cliente extends Authenticatable
 {
     use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 
         'last_name',
@@ -22,15 +16,9 @@ class User extends Authenticatable
         'cedula',
         'phone',
         'password',
-        'role_id',
-        'state'
+        'vehiculo_id',
+        'state',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -44,8 +32,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getRole()
-    {
-        return $this->belongsTo(roles::class, 'role_id');
+    protected $table = 'clientes';
+
+    public function getVehiculo(){
+        return $this->belongsTo(vehiculos::class, 'vehiculo_id');
     }
+
 }

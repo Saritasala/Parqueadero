@@ -3791,13 +3791,13 @@ $(document).ready(function () {
         });
       }
     });
-  }), $('.btnEraseComercio').on('click', function (e) {
+  }), $('.btnEraseVehiculo').on('click', function (e) {
     console.log("INSIDE");
     e.preventDefault();
     var id = $(this).parents('tr').attr('id');
     Swal.fire({
       title: '¿Esta seguro?',
-      text: "Este comercio será eliminado permanentemente",
+      text: "Este vehiculo será eliminado permanentemente",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -3808,7 +3808,7 @@ $(document).ready(function () {
       if (result.value) {
         //console.log(id);
         var token = document.querySelector('meta[name="token"]').getAttribute('content');
-        var route = '/comercio/eliminar/' + id;
+        var route = '/vehiculo/eliminar/' + id;
         $.ajax({
           url: route,
           headers: {
@@ -3828,7 +3828,7 @@ $(document).ready(function () {
           },
           success: function success(response) {
             Swal.close();
-            Swal.fire('Eliminado', 'El comercio ha sido borrado satisfactoriamente', 'success').then(function () {
+            Swal.fire('Eliminado', 'El vehiculo ha sido borrado satisfactoriamente', 'success').then(function () {
               window.location.reload();
             });
           },
@@ -3933,6 +3933,24 @@ $(document).ready(function () {
       }
     });
   });
+  $('.btnEditarUsuario').on('click', function (e) {
+    console.log("INSIDE");
+    e.preventDefault();
+    var btnEdit = document.getElementsByClassName('btnEditarUsuario');
+    var form = document.getElementById('editFormulario');
+
+    if (btnEdit == null) {
+      return;
+    }
+
+    [].forEach.call(btnEdit, function (btn) {
+      btn.addEvenListener('click', function () {
+        var usuario = btn.parentNode.parentNode;
+        var token = document.querySelector('meta[name="crsf-token"]').getAttribute('content');
+        fetch('/');
+      });
+    });
+  });
 });
 
 /***/ }),
@@ -3955,8 +3973,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Gestion_de_Facturacion\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Gestion_de_Facturacion\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Facturacion_Gestion\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Facturacion_Gestion\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -14,9 +14,10 @@ class DatabaseSeeder extends Seeder
         $this->call([UserTableSeeder::class,
                      RolesTableSeeder::class,
                      ParametrosSeeder::class,
-                     ProductosTableSeeder::class,
-                     ComercioTableSeeder::class,
+                     TarifasTableSeeder::class,
+                     VehiculosTableSeeder::class,
                      ParametrosSeeder::class,
-                     Parametros_ValueTableSeeder::class]);
+                     Parametros_ValueTableSeeder::class, 
+                     ClienteTableSeeder::class]);
     }
 }

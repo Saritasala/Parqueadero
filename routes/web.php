@@ -49,13 +49,13 @@ Route::get('/ordenes/eliminar/{id}', 'OrderController@funDelete');
 Route::get('/pedidos/crear/{id}', 'PedidosController@create')->name('pedidos.create');
 Route::post('/pedidos', 'PedidosController@store')->name('pedidos.store');
 
-//Comercios
-Route::get('/comercio', 'ComercioController@index')->name('comercio.index');
-Route::get('/comercio/crear', 'ComercioController@create')->name('comercio.create');
-Route::get('/comercio/editar/{id}', 'ComercioController@edit')->name('comercio.edit');
-Route::post('/comercio', 'ComercioController@store')->name('comercio.store');
-Route::put('/comercio/editar/{id}', 'ComercioController@update')->name('comercio.update');
-Route::delete('/comercio/eliminar/{id}', 'ComercioController@funDelete');
+//Vehiculos
+Route::get('/vehiculos', 'VehiculosController@index')->name('vehiculos.index');
+Route::get('/vehiculos/crear', 'VehiculosController@create')->name('vehiculos.create');
+Route::get('/vehiculos/editar/{id}', 'VehiculosController@edit')->name('vehiculos.edit');
+Route::post('/vehiculos', 'VehiculosController@store')->name('vehiculos.store');
+Route::put('/vehiculos/editar/{id}', 'VehiculosController@update')->name('vehiculos.update');
+Route::delete('/vehiculos/eliminar/{id}', 'VehiculosController@funDelete');
 
 //Usuarios
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios.index');

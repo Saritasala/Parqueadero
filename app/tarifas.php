@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class comercio extends Model
+class tarifas extends Model
 {
     protected $fillable = [
-    'name',
+    'title',
     'description',
-    'number',
-    'email',
-    'direccion',
+    'precio',
+    'tipo_vehiculo',
     ];
     
     protected $table = 'comercios';

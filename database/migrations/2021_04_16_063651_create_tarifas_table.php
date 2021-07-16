@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateTarifasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('tarifas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
             $table->integer('precio');
-            $table->integer('stock');
-            $table->string('img_product', 500)->default('default.png');
-            $table->integer('comercio_id');
+            $table->string('tipo_vehiculo');
             $table->integer('state');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent();

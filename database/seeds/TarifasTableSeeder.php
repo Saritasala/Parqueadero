@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductosTableSeeder extends Seeder
+class TarifasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,13 +11,11 @@ class ProductosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->insert([
-            'title' => 'Cemento',
-            'description' => 'Cemento',
+        DB::table('tarifas')->insert([
+            'title' => 'Tarifa 1',
+            'description' => 'Vehiculos particulares',
             'precio' => '12000',
-            'stock' => '12',
-            'img_product' => 'default.png',
-            'comercio_id' => '1',
+            'tipo_vehiculo' => 'Caminoneta',
             'state' => 1,
             'created_at' => now(),
             'updated_at' => now()

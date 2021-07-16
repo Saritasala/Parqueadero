@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="{{route('comercio.index')}}">
+                <a href="{{route('vehiculos.index')}}">
                     <i class="nc-icon nc-tablet-2"></i>
                     <p>{{ __('Comercios') }}</p>
                 </a>

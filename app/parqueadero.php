@@ -11,10 +11,8 @@ class parqueadero extends Model
         'nombre',
         'pisos',
     ];
-    protected $table = 'products';
+    protected $table = 'parqueadero';
 
-    public function getComercio(){
-      return $this->belongsTo(comercio::class, 'comercio_id');
-   }
+   
 
 }

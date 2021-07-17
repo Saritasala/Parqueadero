@@ -25,29 +25,23 @@ Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Productos
-Route::get('/productos', 'ProductController@index')->name('product.index');
-Route::get('/productos/crear', 'ProductController@create')->name('product.create');
-Route::post('/productos', 'ProductController@store')->name('product.store');
-Route::get('/productos/editar/{id}', 'ProductController@edit')->name('product.edit');
-Route::put('/productos/editar/{id}', 'ProductController@update')->name('product.update');
-Route::delete('/productos/eliminar/{id}', 'ProductController@funDestroy');
-Route::get('/productos/mas/{id}', 'ProductController@show')->name('product.show');
+//Clientes
+Route::get('/clientes', 'ClientesController@index')->name('clientes.index');
+Route::get('/clientes/crear', 'ClientesController@create')->name('clientes.create');
+Route::post('/clientes', 'ClientesController@store')->name('clientes.store');
+Route::get('/clientes/editar/{id}', 'ClientesController@edit')->name('clientes.edit');
+Route::put('/clientes/editar/{id}', 'ClientesController@update')->name('clientes.update');
+Route::delete('/clientes/eliminar/{id}', 'ClientesController@funDestroy');
+Route::get('/clientes/mas/{id}', 'ClientesController@show')->name('clientes.show');
 
-//Ordenes
-Route::get('/ordenes', 'OrderController@index')->name('order.index');
-Route::get('/ordenes/crear', 'OrderController@create')->name('order.create');
-Route::post('/ordenes', 'OrderController@store')->name('order.store');
-Route::get('/ordenes/editar', 'OrderController@edit')->name('order.edit');
-Route::get('factura/{id}', 'OrderController@factura')->name('factura');
-Route::get('/ordenes/mas/{id}', 'OrderController@show')->name('order.show');
-Route::get('/ordenes/eliminar/{id}', 'OrderController@funDelete');
-
-
-//Pedidos
-
-Route::get('/pedidos/crear/{id}', 'PedidosController@create')->name('pedidos.create');
-Route::post('/pedidos', 'PedidosController@store')->name('pedidos.store');
+//Parqueadero
+Route::get('/parqueadero', 'ParqueaderoController@index')->name('parqueadero.index');
+Route::get('/parqueadero/crear', 'ParqueaderoController@create')->name('parqueadero.create');
+Route::post('/parqueadero', 'ParqueaderoController@store')->name('parqueadero.store');
+Route::get('/parqueadero/editar/{id}', 'ParqueaderoController@edit')->name('parqueadero.edit');
+Route::put('/parqueadero/editar/{id}', 'ParqueaderoController@update')->name('parqueadero.update');
+Route::get('factura/{id}', 'ParqueaderoController@factura')->name('factura');
+Route::delete('/parqueadero/eliminar/{id}', 'ParqueaderoController@funDelete');
 
 //Vehiculos
 Route::get('/vehiculos', 'VehiculosController@index')->name('vehiculos.index');

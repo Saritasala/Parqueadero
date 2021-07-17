@@ -20,8 +20,11 @@ class CreateVehiculosTable extends Migration
             $table->string('placa', 6);
             $table->string('modelo', 500);
             $table->string('color');
-            $table->dateTime('fecha_entrada');
-            $table->dateTime('fecha_salida');
+            $table->date('fecha_entrada');
+            $table->time('hora');
+            $table->date('fecha_salida');
+            $table->time('hora_salida');
+            $table->string('puesto');
             $table->integer('state')->default(1);
             $table->dateTime('created_at')->nullable()->useCurrent();
             $table->dateTime('updated_at')->nullable()->useCurrent();

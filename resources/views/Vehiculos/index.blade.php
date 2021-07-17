@@ -36,13 +36,16 @@
                                         <th scope="col">Modelo</th>
                                         <th scope="col">Color</th>
                                         <th scope="col">Fecha de entrada</th>
+                                        <th scope="col">Hora de entrada</th>
                                         <th scope="col">Fecha de salida</th>
+                                        <th scope="col">Hora de salida</th>
                                         <th scope="col">Estado</th>
                                         <th scope="col">Accion</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                            
                                     @foreach ($vehicul as $vehiculos)
                                     <tr id="{{$vehiculos->id}}">   
                                             <td>{{$vehiculos->getCliente->name}}</td>
@@ -50,7 +53,9 @@
                                             <td>{{$vehiculos->modelo}}</td>
                                             <td>{{$vehiculos->color}}</td>
                                             <td>{{$vehiculos->fecha_entrada}}</td>
+                                            <td>{{$vehiculos->hora}}</td>
                                             <td>{{$vehiculos->fecha_salida}}</td>
+                                            <td>{{$vehiculos->hora_salida}}</td>
                                             @if($vehiculos->state == 1)
                                             <td><span class="badge badge-pill badge-success">Activo</span></td>
                                             @else
@@ -119,16 +124,28 @@
             <input type="text" name="color" id="input-color" value="{{old('color')}}" class="form-control" placeholder="Color" required>
           </div>
           <div class="form-group">
+          <label class="form-control-label" for="input-puesto">Puesto *</label>
+            <input type="number" name="puesto" id="input-puesto" value="{{old('puesto')}}" class="form-control" placeholder="Puesto" required>
+          </div>
+          <div class="form-group">
           <label class="form-control-label" for="input-fecha_entrada">Fecha de entrada *</label>
-            <input type="datatime" name="fecha_entrada" id="input-fecha_entrada" value="{{old('fecha_entrada')}}" class="form-control" placeholder="Fecha de entrada" required>
+            <input type="date" name="fecha_entrada" id="input-fecha_entrada" value="{{old('fecha_entrada')}}" class="form-control" placeholder="Fecha de entrada" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-hora">Hora de entrada *</label>
+            <input type="time" name="hora" id="input-hora" value="{{old('hora')}}" class="form-control" placeholder="Hora de entrada" required>
           </div>
           <div class="form-group">
           <label class="form-control-label" for="input-fecha_salida">Fecha de salida *</label>
-            <input type="datatime" name="fecha_salida" id="input-fecha_salida" value="{{old('fecha_salida')}}" class="form-control" placeholder="Fecha de salida" required>
+            <input type="date" name="fecha_salida" id="input-fecha_salida" value="{{old('fecha_salida')}}" class="form-control" placeholder="Fecha de salida" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-hora_salida">Hora de salida *</label>
+            <input type="time" name="hora_salida" id="input-hora_salida" value="{{old('hora_salida')}}" class="form-control" placeholder="Hora de salida" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary btn-round">Crear Comercio</button>
+        <button type="submit" class="btn btn-primary btn-round">Crear Vehiculo</button>
         </form>
       </div>
       </div>

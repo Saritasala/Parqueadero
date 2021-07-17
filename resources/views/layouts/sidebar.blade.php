@@ -22,30 +22,24 @@
                 </a>
             </li>
             <li class="">
-                <a href="{{ route('product.index')}}">
+                <a href="{{ route('clientes.index')}}">
                     <i class="nc-icon nc-box-2"></i>
-                    <p>{{ __('Productos') }}</p>
+                    <p>{{ __('Clientes') }}</p>
                 </a>
             </li>
             <li class="">
-                <a href="{{route('order.index')}}">
+                <a href="{{route('parqueadero.index')}}">
                     <i class="nc-icon nc-paper"></i>
-                    <p>{{ __('Ordenes') }}</p>
+                    <p>{{ __('Parqueadero') }}</p>
                 </a>
             </li>
             <li class="">
                 <a href="{{route('vehiculos.index')}}">
                     <i class="nc-icon nc-tablet-2"></i>
-                    <p>{{ __('Comercios') }}</p>
+                    <p>{{ __('Vehiculos') }}</p>
                 </a>
             </li>
             @if(Auth::user()->role_id==1)
-                <li class="">
-                    <a href="{{route('listado.index')}}">
-                        <i class="nc-icon nc-laptop"></i>
-                        <p>{{ __('Listado de ordenes') }}</p>
-                    </a>
-                </li>
                 <li class="">
                     <a href="{{route('usuarios.index')}}">
                         <i class="nc-icon nc-user-run"></i>

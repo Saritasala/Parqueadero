@@ -1,12 +1,12 @@
 const { default: Swal } = require("sweetalert2");
 $(document).ready(function () {
-    $('.btnEraseProduct').on('click', function (e) {
+    $('.btnEraseCliente').on('click', function (e) {
         console.log("INSIDE");
         e.preventDefault()
         let id = $(this).parents('tr').attr('id');
         Swal.fire({
             title: '¿Esta seguro?',
-            text: "Este producto será eliminado permanentemente",
+            text: "Este cliente será eliminado permanentemente",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -17,7 +17,7 @@ $(document).ready(function () {
             if (result.value) {
               //console.log(id);
               let token = document.querySelector('meta[name="token"]').getAttribute('content');
-              let route = '/productos/eliminar/' + id;
+              let route = '/clientes/eliminar/' + id;
                 $.ajax({
                     url: route,
                     headers: {'X-CSRF-TOKEN' : token},
@@ -38,7 +38,7 @@ $(document).ready(function () {
                         Swal.close()
                         Swal.fire(
                             'Eliminado',
-                            'El producto ha sido borrado satisfactoriamente',
+                            'El cliente ha sido borrado satisfactoriamente',
                             'success'
                         ).then(() => {
                             window.location.reload()
@@ -168,13 +168,13 @@ $(document).ready(function () {
         })
     }),
 
-     $('.btnEraseOrdenes').on('click', function (e) {
+     $('.btnEraseParqueadero').on('click', function (e) {
         console.log("INSIDE");
         e.preventDefault()
         let id = $(this).parents('tr').attr('id');
         Swal.fire({
             title: '¿Esta seguro?',
-            text: "Esta orden será eliminado permanentemente",
+            text: "Esta parqueadero será eliminado permanentemente",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -185,7 +185,7 @@ $(document).ready(function () {
             if (result.value) {
               //console.log(id);
               let token = document.querySelector('meta[name="token"]').getAttribute('content');
-              let route = '/ordenes/eliminar/' + id;
+              let route = '/parqueadero/eliminar/' + id;
                 $.ajax({
                     url: route,
                     headers: {'X-CSRF-TOKEN' : token},
@@ -206,7 +206,7 @@ $(document).ready(function () {
                         Swal.close()
                         Swal.fire(
                             'Eliminado',
-                            'Esta orden ha sido borrado satisfactoriamente',
+                            'Esta parqueadero ha sido borrado satisfactoriamente',
                             'success'
                         ).then(() => {
                             window.location.reload()

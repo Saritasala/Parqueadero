@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\vehiculos;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class VehiculosController extends Controller
@@ -46,7 +47,9 @@ class VehiculosController extends Controller
         $updatevehiculo->modelo = $request->modelo;
         $updatevehiculo->color = $request->color;
         $updatevehiculo->fecha_entrada = $request->fecha_entrada;
+        $updatevehiculo->hora = $request->hora;
         $updatevehiculo->fecha_salida = $request->fecha_salida;
+        $updatevehiculo->hora_salida = $request->fecha_entrada;
         $updatevehiculo->state = 1;
         if($updatevehiculo->update()){
             return redirect()->route('vehiculos.index')->with('status',__('Vehiculo actualizado exitosamente.'));
@@ -67,10 +70,13 @@ class VehiculosController extends Controller
             'placa' => 'required|max:6',
             'modelo' => 'required',
             'color' => 'required',
+            'puesto' => 'required',
             'fecha_entrada' => 'required',
             'fecha_salida' => 'required',
+            'hora' => 'required',
+            'hora_salida' => 'required',
         ]);
-        //dd($request);
+        
         try {
             $newvehiculo = new vehiculos();
             $newvehiculo->user_id = (Auth::user()->id);
@@ -78,11 +84,16 @@ class VehiculosController extends Controller
             $newvehiculo->placa = $request->placa;
             $newvehiculo->modelo = $request->modelo;
             $newvehiculo->color = $request->color;
+            $newvehiculo->puesto = $request->puesto;
             $newvehiculo->fecha_entrada = $request->fecha_entrada;
+            $newvehiculo->hora = $request->hora+':'+00;
             $newvehiculo->fecha_salida = $request->fecha_salida;
+            $newvehiculo->hora_salida = $request->hora_salida+':'+00;
             $newvehiculo->state = 1;
             $newvehiculo->save();
-            //dd($newComercio);
+            $newvehicul = new Cliente();
+            $newvehicul->vehiculo_id = $newvehiculo->id;
+            $newvehicul->update();
             return $newvehiculo;
             
             } catch (\Throwable $e) {

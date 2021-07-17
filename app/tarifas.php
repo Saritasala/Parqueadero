@@ -13,5 +13,5 @@ class tarifas extends Model
     'tipo_vehiculo',
     ];
     
-    protected $table = 'comercios';
+    protected $table = 'tarifas';
 }

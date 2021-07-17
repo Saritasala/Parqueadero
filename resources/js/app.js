@@ -223,22 +223,4 @@ $(document).ready(function () {
             }
         })
     })
-
-    $('.btnEditarUsuario').on('click', function (e) {
-        console.log("INSIDE");
-        e.preventDefault()
-        let btnEdit = document.getElementsByClassName('btnEditarUsuario');
-        let form = document.getElementById('editFormulario');
-        if(btnEdit == null){
-            return;
-        }
-        [].forEach.call(btnEdit, function (btn){
-            btn.addEvenListener('click', ()=>{
-                let usuario = btn.parentNode.parentNode;
-                let token = document.querySelector('meta[name="crsf-token"]').getAttribute('content');
-
-                fetch('/')
-            })
-        })
-    })
 });

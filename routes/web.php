@@ -59,9 +59,8 @@ Route::put('/usuarios/editar/{id}', 'UsuariosController@update')->name('usuarios
 Route::post('/usuarios', 'UsuariosController@store')->name('usuarios.store');
 Route::delete('/usuario/eliminar/{id}', 'ComercioController@funDelete');
 
-//Listado de ordenes
-Route::get('/Lista', 'ListOrderController@index')->name('listado.index');
-Route::get('/Lista/mas/{id}', 'ListOrderController@show')->name('listado.show');
+//Tarifas
+Route::get('/tarifas', 'TarifasController@index')->name('tarifas.index');
 
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
 Route::put('profile', 'ProfileController@update')->name('profile.update');

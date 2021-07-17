@@ -3933,24 +3933,6 @@ $(document).ready(function () {
       }
     });
   });
-  $('.btnEditarUsuario').on('click', function (e) {
-    console.log("INSIDE");
-    e.preventDefault();
-    var btnEdit = document.getElementsByClassName('btnEditarUsuario');
-    var form = document.getElementById('editFormulario');
-
-    if (btnEdit == null) {
-      return;
-    }
-
-    [].forEach.call(btnEdit, function (btn) {
-      btn.addEvenListener('click', function () {
-        var usuario = btn.parentNode.parentNode;
-        var token = document.querySelector('meta[name="crsf-token"]').getAttribute('content');
-        fetch('/');
-      });
-    });
-  });
 });
 
 /***/ }),

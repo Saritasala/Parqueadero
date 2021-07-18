@@ -17,5 +17,19 @@ return [
         1 => 'Activo'
     ],
 
+    'tipo_vehiculo' => [
+        0 => 'Furgon',
+        1 => 'Particular',
+        3 => 'Escolar', 
+        4 => 'Moto',
+        5 => 'Carga Pesada'
+    ],
+
+    'tiempo' => [
+        0 => 'Hora',
+        1 => 'Minutos',
+    ],
+    
+
     
 ];

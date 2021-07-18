@@ -20,9 +20,9 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card bg-light mb-4" style="padding: 30px 20px;">
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
-                    <p class="text-white">Productos</p></div>
+                    <p class="text-white">clientes</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >{{$productos}}</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$clientes}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>
@@ -30,9 +30,9 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card bg-light mb-4" style="padding: 30px 20px;">
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
-                    <p class="text-white">Comercios</p></div>
+                    <p class="text-white">Vehiculos</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >{{$comercios}}</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$vehiculo}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>
@@ -40,9 +40,9 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card bg-light mb-4" style="padding: 30px 20px;">
                 <div class="card-header" style="background-color:rgb(28, 172, 117);  text-align: center;">
-                    <p class="text-white">Ordenes</p></div>
+                    <p class="text-white">Parqueaderos</p></div>
                 <div class="card-body">
-                  <h5 class="card-title" style=" text-align: center;" >{{$ordenes}}</h5>
+                  <h5 class="card-title" style=" text-align: center;" >{{$parqueaderos}}</h5>
                   <p class="card-text" style=" text-align: center;">Registrados</p>
                 </div>
               </div>

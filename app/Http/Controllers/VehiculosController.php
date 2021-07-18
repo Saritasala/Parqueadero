@@ -26,7 +26,7 @@ class VehiculosController extends Controller
     public function store(Request $request)
     {
         $create = $this->funCreate($request);
-        //dd($create);
+        
         return redirect()->route('vehiculos.index')->with('status',__('Vehiculo registrado exitosamente.'));
             
     }
@@ -42,7 +42,7 @@ class VehiculosController extends Controller
         $request->merge(['id' => $id]);
 
         $updatevehiculo = vehiculos::where('id', $id)->first();
-        $updatevehiculo->clientes_id = $request->clientes_id;
+        $updatevehiculo->clientes_id = $request->cliente_id;
         $updatevehiculo->placa = $request->placa;
         $updatevehiculo->modelo = $request->modelo;
         $updatevehiculo->color = $request->color;
@@ -64,9 +64,9 @@ class VehiculosController extends Controller
         //Funciones**
 
     public function funCreate(Request $request){
-        
+       
         $request->validate([
-            'clientes_id' => 'required',
+            'cliente_id' => 'required',
             'placa' => 'required|max:6',
             'modelo' => 'required',
             'color' => 'required',
@@ -80,15 +80,15 @@ class VehiculosController extends Controller
         try {
             $newvehiculo = new vehiculos();
             $newvehiculo->user_id = (Auth::user()->id);
-            $newvehiculo->clientes_id = $request->clientes_id;
+            $newvehiculo->clientes_id = $request->cliente_id;
             $newvehiculo->placa = $request->placa;
             $newvehiculo->modelo = $request->modelo;
             $newvehiculo->color = $request->color;
             $newvehiculo->puesto = $request->puesto;
             $newvehiculo->fecha_entrada = $request->fecha_entrada;
-            $newvehiculo->hora = $request->hora+':'+00;
+            $newvehiculo->hora = $request->hora;
             $newvehiculo->fecha_salida = $request->fecha_salida;
-            $newvehiculo->hora_salida = $request->hora_salida+':'+00;
+            $newvehiculo->hora_salida = $request->hora_salida;
             $newvehiculo->state = 1;
             $newvehiculo->save();
             $newvehicul = new Cliente();
@@ -104,7 +104,6 @@ class VehiculosController extends Controller
 
     
     public function funDelete($id){
-        
         $model = vehiculos::where('id', $id)->first();
         $model->state = 3;
         if ($model->update()) {
@@ -112,5 +111,5 @@ class VehiculosController extends Controller
         }else{
             return $this->respond('server error', []);
         }
-        }
+    }
 }

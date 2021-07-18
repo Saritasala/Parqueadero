@@ -71,32 +71,52 @@
             </div>
             @endif
       <div class="modal-body">
-      <form action="{{route('vehiculos.store')}}" method="POST" enctype="multipart/form-data">
+      <form action="" method="POST" enctype="multipart/form-data">
          @csrf
+         <div class="form-group">
+          <label class="form-control-label" for="input-name">Parquadero *</label>
+          <select class="form-control" name="parqueadero_id">
+          <option value=" " selected disabled>Seleccionar parqueadero</option>
+            @foreach($parqueadero as $parqueo)
+                <option value="{{$parqueo->id}}">{{$parqueo->nombre}}</option>
+             @endforeach
+              </select>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-title">Titulo *</label>
+          <input type="text" name="title" id="input-title" value="{{old('title')}}" class="form-control" placeholder="Titulo" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-description">Descripcion *</label>
+          <textarea name="description" cols="30" rows="5" class="form-control" style="border-color: rgb(190, 190, 190)" required></textarea>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-modelo">Precio *</label>
+            <input type="text" name="precio" id="input-precio" value="{{old('precio')}}" class="form-control" placeholder="Modelo" required>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-modelo">Tiempo *</label>
+          <select  name="tiempo" class="form-control" required>
+                  <option value=" " selected disabled> Seleccionar el tiempo </option>
+                  <option value="1"> Hora </option>
+                  <option value="2"> Minutos </option>
+          </select>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-modelo">Tipo de vehiculo *</label>
+          <select  name="tipo_vehiculo" class="form-control" required>
+                  <option value=" " selected disabled> Seleccionar un tipo de auto </option>
+                  <option value="1"> Particular </option>
+                  <option value="2"> Furgon </option>
+                  <option value="3"> Escolar </option>
+                  <option value="4"> Motocicleta </option>
+                  <option value="4"> Carga pesada </option>
+          </select>
+          </div>
          
-          <div class="form-group">
-          <label class="form-control-label" for="input-name">Placa *</label>
-          <input type="text" name="placa" id="input-placa" value="{{old('placa')}}" class="form-control" placeholder="Placa" required>
-          </div>
-          <div class="form-group">
-          <label class="form-control-label" for="input-modelo">Modelo *</label>
-            <input type="text" name="modelo" id="input-modelo" value="{{old('modelo')}}" class="form-control" placeholder="Modelo" required>
-          </div>
-          <div class="form-group">
-          <label class="form-control-label" for="input-color">Color *</label>
-            <input type="text" name="color" id="input-color" value="{{old('color')}}" class="form-control" placeholder="Color" required>
-          </div>
-          <div class="form-group">
-          <label class="form-control-label" for="input-puesto">Puesto *</label>
-            <input type="number" name="puesto" id="input-puesto" value="{{old('puesto')}}" class="form-control" placeholder="Puesto" required>
-          </div>
-          <div class="form-group">
-          <label class="form-control-label" for="input-fecha_entrada">Fecha de entrada *</label>
-            <input type="date" name="fecha_entrada" id="input-fecha_entrada" value="{{old('fecha_entrada')}}" class="form-control" placeholder="Fecha de entrada" required>
-          </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary btn-round">Crear Vehiculo</button>
+        <button type="submit" class="btn btn-primary btn-round" onclick="create()">Crear Tarifa</button>
         </form>
       </div>
       </div>
@@ -104,6 +124,21 @@
   </div>
 </div>
 <script>
-
+function create (){
+    let parqueadero_id = document.getElementById('parqueadero_id').value
+    let title = document.getElementById('title').value
+    let description = document.getElementById('description').value
+    let precio = document.getElementById('precio').value
+    let tiempo = document.getElementById('tiempo').value
+    let tipo_vehiculo = document.getElementById('tipo_vehiculo').value
+    fetch('http://127.0.0.1:5000/tarifas', {
+                    method: 'POST',
+                    headers: { "Content-type": "application/json;" },
+                    body: JSON.stringify({'parqueadero_id': parqueadero_id, 'title':title, 'description': description,
+                    'precio':precio, 'tiempo':tiempo, 'tipo_vehiculo':tipo_vehiculo, 'state':1})
+                })
+                .then(response => response.json())
+                .then(data => {console.log(data)})
+            }
   </script>
 @endsection

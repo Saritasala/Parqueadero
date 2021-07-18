@@ -61,6 +61,8 @@ Route::delete('/usuario/eliminar/{id}', 'ComercioController@funDelete');
 
 //Tarifas
 Route::get('/tarifas', 'TarifasController@index')->name('tarifas.index');
+Route::get('/tarifas/crear', 'TarifasController@create')->name('tarifas.create');
+Route::post('/tarifas', 'TarifasController@store')->name('tarifas.store');
 
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
 Route::put('profile', 'ProfileController@update')->name('profile.update');

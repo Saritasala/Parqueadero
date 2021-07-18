@@ -39,6 +39,12 @@
                     <p>{{ __('Vehiculos') }}</p>
                 </a>
             </li>
+            <li class="">
+                <a href="{{route('tarifas.index')}}">
+                    <i class="nc-icon nc-tablet-2"></i>
+                    <p>{{ __('Tarifas') }}</p>
+                </a>
+            </li>
             @if(Auth::user()->role_id==1)
                 <li class="">
                     <a href="{{route('usuarios.index')}}">

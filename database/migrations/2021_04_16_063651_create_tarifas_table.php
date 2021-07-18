@@ -15,13 +15,14 @@ class CreateTarifasTable extends Migration
     {
         Schema::create('tarifas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('parqueadero_id');
             $table->string('title');
             $table->string('description');
             $table->integer('precio');
-            $table->string('tipo_vehiculo');
+            $table->integer('tipo_vehiculo');
+            $table->integer('tiempo');
             $table->integer('state');
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->useCurrent();
+            
         });
     }
 

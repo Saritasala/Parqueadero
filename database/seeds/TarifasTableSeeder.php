@@ -13,12 +13,12 @@ class TarifasTableSeeder extends Seeder
     {
         DB::table('tarifas')->insert([
             'title' => 'Tarifa 1',
+            'parqueadero_id' => 1,
             'description' => 'Vehiculos particulares',
             'precio' => '12000',
-            'tipo_vehiculo' => 'Caminoneta',
+            'tipo_vehiculo' => 1,
+            'tiempo' => 1,
             'state' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
         ]);
     }
 }

@@ -3797,7 +3797,7 @@ $(document).ready(function () {
     var id = $(this).parents('tr').attr('id');
     Swal.fire({
       title: '¿Esta seguro?',
-      text: "Este vehiculo será eliminado permanentemente",
+      text: "Este vehciulo será eliminado permanentemente",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -3808,7 +3808,7 @@ $(document).ready(function () {
       if (result.value) {
         //console.log(id);
         var token = document.querySelector('meta[name="token"]').getAttribute('content');
-        var route = '/vehiculo/eliminar/' + id;
+        var route = '/vehiculos/eliminar/' + id;
         $.ajax({
           url: route,
           headers: {

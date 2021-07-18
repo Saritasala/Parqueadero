@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
                      VehiculosTableSeeder::class,
                      ParametrosSeeder::class,
                      Parametros_ValueTableSeeder::class, 
-                     ClienteTableSeeder::class]);
+                     ClienteTableSeeder::class,
+                     ParqueaderoTableSeeder::class]);
     }
 }

@@ -55,6 +55,7 @@ $(document).ready(function () {
             }
         })
     }),
+    
 
     $('.btnEraseVehiculo').on('click', function (e) {
         console.log("INSIDE");
@@ -62,7 +63,7 @@ $(document).ready(function () {
         let id = $(this).parents('tr').attr('id');
         Swal.fire({
             title: '¿Esta seguro?',
-            text: "Este vehiculo será eliminado permanentemente",
+            text: "Este vehciulo será eliminado permanentemente",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -73,7 +74,7 @@ $(document).ready(function () {
             if (result.value) {
               //console.log(id);
               let token = document.querySelector('meta[name="token"]').getAttribute('content');
-              let route = '/vehiculo/eliminar/' + id;
+              let route = '/vehiculos/eliminar/' + id;
                 $.ajax({
                     url: route,
                     headers: {'X-CSRF-TOKEN' : token},

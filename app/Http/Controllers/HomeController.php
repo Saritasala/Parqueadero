@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\product;
-use App\comercio;
-use App\order;
+use App\parqueadero;
+use App\Cliente;
+use App\vehiculos;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -29,19 +29,19 @@ class HomeController extends Controller
     {
         
         $user = User::where('state', [1,2])->get();
-        $order = order::where('state', [1,2])->get();
-        $comercio = comercio::where('state', [1,2])->get();
-        $product = product::where('state', [1,2])->get();
+        $parqueadero = parqueadero::where('state', [1,2])->get();
+        $cliente = Cliente::where('state', [1,2])->get();
+        $vehiculos = vehiculos::where('state', [1,2])->get();
         $usuario =  $user->count();
-        $ordenes = $order->count();
-        $comercios = $comercio->count();
-        $productos = $product->count();
+        $parqueaderos = $parqueadero->count();
+        $clientes = $cliente->count();
+        $vehiculo = $vehiculos->count();
 
         $data = array(
-            'productos'=> $productos,
+            'vehiculo'=> $vehiculo,
             'usuario'=> $usuario,
-            'ordenes'=> $ordenes,
-            'comercios' => $comercios,
+            'parqueaderos'=> $parqueaderos,
+            'clientes' => $clientes,
 
         );
         return view('home',  $data);

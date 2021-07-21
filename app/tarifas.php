@@ -11,8 +11,8 @@ class tarifas extends Model
     'title',
     'description',
     'precio',
-    'tiempo',
     'tipo_vehiculo',
+    'tiempo',
     ];
     
     protected $table = 'tarifas';

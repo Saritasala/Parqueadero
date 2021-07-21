@@ -44,7 +44,7 @@
                             src="{{ config('app.myUrl') . 'storage/' . $data->getCommerce->getUser->photo }}" alt=""> --}}
                     </td>
                     <td width="25%" style="padding-bottom: 10px;margin-bottom: 0">
-                        <h2 style="text-align: center">JOSTMA
+                        <h2 style="text-align: center">PARKING
 
                         </h2>
                         <h3 style="text-align: center;margin: 0 ;color:gray">

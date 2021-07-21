@@ -71,7 +71,7 @@
             </div>
             @endif
       <div class="modal-body">
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="{{route('tarifas.store')}}" method="POST" enctype="multipart/form-data">
          @csrf
          <div class="form-group">
           <label class="form-control-label" for="input-name">Parquadero *</label>
@@ -131,7 +131,7 @@ function create (){
     let precio = document.getElementById('precio').value
     let tiempo = document.getElementById('tiempo').value
     let tipo_vehiculo = document.getElementById('tipo_vehiculo').value
-    fetch('http://127.0.0.1:5000/tarifas', {
+    fetch('http://127.0.0.1:5000/tarifa', {
                     method: 'POST',
                     headers: { "Content-type": "application/json;" },
                     body: JSON.stringify({'parqueadero_id': parqueadero_id, 'title':title, 'description': description,

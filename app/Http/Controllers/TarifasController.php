@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use App\tarifas;
 use App\parqueadero;
 
@@ -14,39 +18,45 @@ class TarifasController extends Controller
         return view('Tarifas.index', compact('tarifa', 'parqueadero')); 
     }
 
-    
     public function store(Request $request)
     {
         $create = $this->funCreate($request);
-        return redirect()->route('tarifas.index')->withStatus(__('Tarifa registrado exitosamente.'));
+        
+        return redirect()->route('Tarifas.index')->with('status',__('Tarifa registrado exitosamente.'));
+            
     }
 
-    //Funciones**
+       //Funciones**
 
-    public function funCreate(Request $request){
+       public function funCreate(Request $request){
+       
         $request->validate([
             'parqueadero_id' => 'required',
-            'title' => 'required|max:500',
+            'title' => 'required',
             'description' => 'required',
             'precio' => 'required',
-            'tipo_vehiculo' => 'required',
             'tiempo' => 'required',
-        ]);
-        try {
-        $nuevo = new tarifas();
-        $nuevo->parqueadero_id = $request->parqueadero_id;
-        $nuevo->title = $request->title;
-        $nuevo->description = $request->description;
-        $nuevo->precio = $request->precio;
-        $nuevo->tipo_vehiculo = $request->tipo_vehiculo;
-        $nuevo->tiempo = $request->tiempo;
-        $nuevo->state = 1;
-        $nuevo->save();
-        return $this->respond('done', $nuevo);
-        } catch (\Throwable $e) {
-            return $this->respond('server error', [], $e->getMessage());
-        }
+            'tipo_vehiculo' => 'required',
     
+        ]);
+        
+        try {
+            $newtarifa = new tarifas();
+            $newtarifa->parqueadero_id = $request->parqueadero_id;
+            $newtarifa->title = $request->title;
+            $newtarifa->description = $request->description;
+            $newtarifa->precio = $request->precio;
+            $newtarifa->puesto = $request->puesto;
+            $newtarifa->tiempo = $request->tiempo;
+            $newtarifa->tipo_vehiculo = $request->tipo_vehiculo;
+            $newtarifa->state = 1;
+            $newtarifa->save();
+            return $newtarifa;
+            
+            } catch (\Throwable $e) {
+                return $this->respond('server error', [], $e->getMessage());
+            }
+        
     }
 
 }

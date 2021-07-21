@@ -3,7 +3,7 @@
         <div class="row">
             <div class="credits ml-auto">
                 <span class="copyright" >
-                    © Powered by JOSTMA</a>
+                    © Powered by PARKING</a>
                 </span>
             </div>
         </div>

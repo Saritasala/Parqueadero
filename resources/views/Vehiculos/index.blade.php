@@ -69,6 +69,8 @@
                                                 <a class="btn btn-danger btn-sm btnEraseVehiculo" title="Eliminar"
                                                 ><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
+                                                <a href="{{ route('factura', ['id' => $vehiculos->id]) }}" class="btn btn-info btn-sm" title="Factura"
+                                                target="_blank"><i class="nc-icon nc-paper"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

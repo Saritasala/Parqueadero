@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\tarifas;
+use App\User;
+use App\roles;
 use App\parqueadero;
 
 class TarifasController extends Controller
@@ -24,6 +26,15 @@ class TarifasController extends Controller
         
         return redirect()->route('Tarifas.index')->with('status',__('Tarifa registrado exitosamente.'));
             
+    }
+
+    public function edit( $id)
+    {
+        $user = User::where('id', $id)->first();  
+        $roles = roles::where('state', 1)->get(); 
+        $parqueadero = parqueadero::where('state', 1)->get(); 
+        $tarifa = tarifas::where('state', 1)->get(); 
+        return view('Tarifas.edit', compact('user', 'roles', 'parqueadero', 'tarifa')); 
     }
 
        //Funciones**

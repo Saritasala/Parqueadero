@@ -48,4 +48,33 @@ class User extends Authenticatable
     {
         return $this->belongsTo(roles::class, 'role_id');
     }
+
+    public function scopeFlName($query, $name)
+    {
+       if (trim($name) != null) {
+          return $query->where("name", 'LIKE', '%'.$name.'%');
+       }
+    }
+    public function scopeFlPhone($query, $phone)
+    {
+       if (trim($phone) != null) {
+          return $query->where("cellphone", 'LIKE', '%'.$phone.'%');
+       }
+ 
+    }
+ 
+    public function scopeFlCedula($query, $cedula)
+    {
+       if (trim($cedula) != null) {
+        return $query->where("cedula", 'LIKE', '%'.$cedula.'%');
+         
+       }
+    }
+ 
+    public function scopeFlState($query, $state)
+    {
+       if (trim($state) != null) {
+          return $query->where("state", $state);
+       }
+    }
 }

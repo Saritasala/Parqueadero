@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\parqueadero;
+use App\tarifas;
 use Illuminate\Http\Request;
 use App\vehiculos;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class VehiculosController extends Controller
 {
@@ -101,8 +104,36 @@ class VehiculosController extends Controller
             }
         
     }
+    public function funShow(Request $request)
+    {
+       $request->validate([
+          'id' => 'required|exists:vehiculos,id'
+       ]);
+        $vehiculo = vehiculos::where('id', $request->id)->with('getParqueo')->first();
+        $tarifa = tarifas::where('state',[1,2])->with('getParqueadero')->get();
+        $data = array(
+            'vehiculo' =>$vehiculo,
+            'tarifa' =>$tarifa,
+        );
+       return response()->json(['code' => 200, 'data'=>$data], 200);
+    }
 
-    
+
+    public function factura($id)
+    {
+       request()->merge(['id' => $id]);
+       $data = $this->funShow(request())->original;
+       if ($data['code'] == 200) {
+          $pdf = PDF::loadView('Parqueadero.factura.factura', ['data'=>$data['data']]);
+          return $pdf->download('factura.pdf');
+       }
+
+         $model = vehiculos::find($id);
+         $model->update(['payment_type_vp'=>1]);
+ 
+ 
+    }
+
     public function funDelete($id){
         $model = vehiculos::where('id', $id)->first();
         $model->state = 3;

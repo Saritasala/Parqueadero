@@ -17,6 +17,7 @@ class CreateVehiculosTable extends Migration
             $table->integer('id', true);
             $table->integer('user_id');
             $table->integer('clientes_id');
+            $table->integer('parqueadero_id');
             $table->string('placa', 6);
             $table->string('modelo', 500);
             $table->string('color');

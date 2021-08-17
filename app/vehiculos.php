@@ -9,6 +9,7 @@ class vehiculos extends Model
     protected $fillable = [
         'user_id',
         'clientes_id',
+        'parqueadero_id',
         'placa',
         'modelo',
         'color',
@@ -24,6 +25,10 @@ class vehiculos extends Model
 
     public function getCliente(){
         return $this->belongsTo(Cliente::class, 'clientes_id');
+    }
+
+    public function getParqueo(){
+        return $this->belongsTo(parqueadero::class, 'parqueadero_id'); 
     }
 
 }

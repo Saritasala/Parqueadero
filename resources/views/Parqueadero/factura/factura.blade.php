@@ -57,7 +57,7 @@
                         </h3>
                     </td>
                     <td width="25%">
-                        <h3>Orden Compra : {{ $data['element']->name }}
+                        <h3>Orden Compra : {{ $data['vehiculo']->placa }}
                         </h3>
                     </td>
                 </tr>
@@ -75,19 +75,21 @@
                 <tr>
                     <td width="50%">
                         <b style="font-size:8px;color:#999">EMPELADO </b><br /><span style="font-size:14px">
-                            {{ $data['element']->getUser->name . ' ' . $data['element']->getUser->last_name}}</span>
+                            
                     </td>
                     <td width="25%">
                         <b style="font-size:8px;color:#999">FECHA </b><br /><span
-                            style="font-size:14px">{{ $data['element']->date }}</span>
+                           style="font-size:14px">
+                            
+                        </span> 
                     </td>
                     <td width="25%">
                         <b style="font-size:8px;color:#999">REFERENCIA </b><br /><span style="font-size:14px">
-                            {{ $data['element']->reference}}</span>
+                           
                     </td>
                     <td width="25%">
                         <b style="font-size:8px;color:#999">METODO DE PAGO </b><br /><span style="font-size:14px">
-                            {{ $data['element']->getPayment->name}}</span>
+                           
                     </td>
                     
                 </tr>
@@ -97,7 +99,9 @@
                 <tr>
                     <td width="50%">
                         <b style="font-size:8px;color:#999">DIRECCION </b><br /><span
-                            style="font-size:14px">{{ $data['element']->direccion}}</span>
+                            style="font-size:14px">
+                         
+                        </span>
                     </td>
                 
 
@@ -110,7 +114,7 @@
     <div style="text-align: left; padding: 5px; font-family: tahoma; font-size: 14px;"><b>Detalle de la Compra </b>
     </div>
 
-    <!-- detalle de la compra --->
+   
     <div style="padding: 10px;">
 
 
@@ -121,21 +125,17 @@
         <div class='panel-products-view' id='pnl-products-car' data-cantidad='".$items_."' style='font-size:10pt'>
 
             <table width='100%'>
-                @foreach ($data['pedido'] as $item)
+                
 
                     <tr>
-                        <td width='50%'>
-                            <h4>{{$item->getProduct->title}} <small>(1x
-                                {{$item->getProduct->precio}})</small>
-                                x({{ $item->stock}})</h4>
-                        </td>
+                        
                         
 
                         <td style='text-align:right'>
-                            ${{ number_format($item->total) }}
+                           
                         </td>
                     </tr>
-                @endforeach
+               
 
             </table>
 
@@ -156,7 +156,7 @@
             <tr>
                 <td width='70%'></td>
                 <td width='15%'>Total Compra :</td>
-                <td width='15%'>${{ number_format($data['element']->total) }}</td>
+              
             </tr>
 
         </table>

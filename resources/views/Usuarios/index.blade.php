@@ -27,7 +27,8 @@
                     <button type="button" class=" btn bg-info btn-sm text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                         Crear Empleado
                     </button>
-
+                <br>
+                <br>
                     
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">
@@ -43,7 +44,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $usuario)
+                                    @foreach ($users as $usuario)
                                         <tr id="{{$usuario->id}}">
                                             <td>{{$usuario->name}}</td>
                                             <td>{{$usuario->last_name}}</td>
@@ -77,7 +78,8 @@
         </div>
     </div>
 </div>
-  <!-- Modal de cre<r !-->
+
+  <!-- Modal de crear !-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

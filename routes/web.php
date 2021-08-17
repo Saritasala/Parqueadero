@@ -50,6 +50,7 @@ Route::get('/vehiculos/editar/{id}', 'VehiculosController@edit')->name('vehiculo
 Route::post('/vehiculos', 'VehiculosController@store')->name('vehiculos.store');
 Route::put('/vehiculos/editar/{id}', 'VehiculosController@update')->name('vehiculos.update');
 Route::delete('/vehiculos/eliminar/{id}', 'VehiculosController@funDelete');
+Route::get('factura/{id}', 'VehiculosController@factura')->name('factura');
 
 //Usuarios
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios.index');
@@ -62,7 +63,7 @@ Route::delete('/usuario/eliminar/{id}', 'ComercioController@funDelete');
 //Tarifas
 Route::get('/tarifas', 'TarifasController@index')->name('tarifas.index');
 Route::get('/tarifas/crear', 'TarifasController@create')->name('tarifas.create');
-Route::post('/tarifas', 'TarifasController@store')->name('tarifas.store');
+Route::post('/tarifas/editar', 'TarifasController@edit')->name('tarifas.edit');
 
 Route::get('profile', 'ProfileController@edit')->name('profile.edit');
 Route::put('profile', 'ProfileController@update')->name('profile.update');

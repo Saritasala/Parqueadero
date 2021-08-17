@@ -31,4 +31,17 @@ class vehiculos extends Model
         return $this->belongsTo(parqueadero::class, 'parqueadero_id'); 
     }
 
+    public function scopeFlPlaca($query, $placa)
+    {
+       if (trim($placa) != null) {
+          return $query->where("name", 'LIKE', '%'.$placa.'%');
+       }
+    }
+    
+    public function scopeFlState($query, $state)
+    {
+       if (trim($state) != null) {
+          return $query->where("state", $state);
+       }
+    }
 }

@@ -38,4 +38,30 @@ class Cliente extends Authenticatable
         return $this->belongsTo(vehiculos::class, 'vehiculo_id');
     }
 
+    public function scopeFlName($query, $name)
+    {
+       if (trim($name) != null) {
+          return $query->where("name", 'LIKE', '%'.$name.'%');
+       }
+    }
+    public function scopeFlLast_name($query, $last_name)
+    {
+       if (trim($last_name) != null) {
+        return $query->where("last_name", 'LIKE', '%'.$last_name.'%');
+         
+       }
+    }
+    public function scopeFlCedula($query, $cedula)
+    {
+       if (trim($cedula) != null) {
+        return $query->where("cedula", 'LIKE', '%'.$cedula.'%');
+         
+       }
+    }
+    public function scopeFlState($query, $state)
+    {
+       if (trim($state) != null) {
+          return $query->where("state", $state);
+       }
+    }
 }

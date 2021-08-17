@@ -15,7 +15,14 @@ class ParqueaderoController extends Controller
 
     public function index(){
         $puesto= parqueadero::where('state',[1,2])->get();
-      
+        
+        if (!is_null(request()->nombre)) {
+            $puesto = $puesto->where('nombre', request()->nombre);
+        }
+       
+        if (!is_null(request()->state) && request()->state != -1) {
+            $puesto = $puesto->where('state', request()->state);
+        }
         return view('Parqueadero.index', compact('puesto')); 
     }
 

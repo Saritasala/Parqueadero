@@ -7,9 +7,9 @@
     <link rel="icon" type="image/png" href="{{ asset('paper') }}/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="token" content="{{ csrf_token() }}">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
     <link type="text/css" href="{{ asset('paper') }}/css/paper-dashboard.css?v=v2.0.0" rel="stylesheet">
     <!-- Extra details for Live View on GitHub Pages -->
@@ -58,8 +58,8 @@
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="vendor/select2/dist/js/select2.min.js"></script> -->
+    <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="vendor/select2/dist/js/select2.min.js"></script>
 
     @stack('styles')
 
@@ -94,11 +94,11 @@
     <script src="{{ asset('paper') }}/demo/demo.js"></script>
     <link href="{{ asset('css') }}/app.css" rel="stylesheet" />
      <!-- Select-two! -->
-    <!-- <style>
+    <style>
         .swal2-container {
             z-index: 10000;
         }
-    </style> -->
+    </style>
     <!-- Sharrre libray -->
     <!-- <script src="../assets/demo/jquery.sharrre.js"></script> -->
     <script>
@@ -106,16 +106,16 @@
     </script>
 
     <script src="{{ asset('js') }}/script.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @stack('scripts')
-    <!-- <script>
+    <script>
          $(document).ready(function() {
             $('.selecttwo').select2({
                 theme: 'bootstrap4',
             });
         });
 
-    </script> -->
+    </script>
 
 </body>
 

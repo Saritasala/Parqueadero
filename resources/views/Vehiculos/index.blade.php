@@ -27,6 +27,39 @@
                     <button type="button" class=" btn bg-info btn-sm text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                         Crear Vehiculos
                         </button>
+                        <form action="{{route('vehiculos.index')}}" method="GET">
+                      @csrf
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Placa</label>
+                                    <input type="text" name="placa" class="form-control" placeholder="Placa"
+                                        value="{{request()->placa}}">
+                                </div>
+                    
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Estado</label>
+                                    <select name="state" class="selecttwo form-control">
+                                        <option value="-1"
+                                            {{ request()->state == -1 || is_null(request()->state) ? 'selected' : ''}}>
+                                            Todos</option>
+                                        @foreach(Config::get('const.states') as $state => $value)
+                                        <option value="{{$state}}" {{request()->state === "".$state ? 'selected' : ''}}>
+                                            {{$value['name']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-info btn-block ">Filtrar</button>
+                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">
                                 <thead class="thead-light" style=" background-color:rgb(24, 173, 116);">
@@ -47,7 +80,8 @@
                                 <tbody>
                             
                                     @foreach ($vehicul as $vehiculos)
-                                    <tr id="{{$vehiculos->id}}">   
+                                    <tr id="{{$vehiculos->id}}">
+                                      @if(!empty($vehiculos))   
                                             <td>{{$vehiculos->getCliente->name}}</td>
                                             <td>{{$vehiculos->placa}}</td>
                                             <td>{{$vehiculos->modelo}}</td>
@@ -72,6 +106,9 @@
                                                 <a href="{{ route('factura', ['id' => $vehiculos->id]) }}" class="btn btn-info btn-sm" title="Factura"
                                                 target="_blank"><i class="nc-icon nc-paper"></i></a>
                                             </td>
+                                          @else 
+                                           <td>No hay vehiculos registrados</td>
+                                          @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -110,6 +147,15 @@
           <option value=" " >Seleccionar cliente</option>
             @foreach($cliente as $clientes)
                 <option value="{{$clientes->id}}">{{$clientes->name}}</option>
+             @endforeach
+              </select>
+          </div>
+          <div class="form-group">
+          <label class="form-control-label" for="input-name">Parqueadero *</label>
+          <select class="form-control" name="cliente_id">
+          <option value=" " >Seleccionar parqueadero</option>
+            @foreach($parqueadero as $parquear)
+                <option value="{{$parquear->id}}">{{$parquear->nombre}}</option>
              @endforeach
               </select>
           </div>

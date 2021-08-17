@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Redirect;class UsuariosController extends Control
         if (!is_null(request()->name)) {
             $users = $users->where('name', request()->name);
         }
-        if (!is_null(request()->phone)) {
-            $users = $users->where('phone', request()->phone);
-        }
         if (!is_null(request()->cedula)) {
             $users = $users->where('cedula', request()->cedula);
         }

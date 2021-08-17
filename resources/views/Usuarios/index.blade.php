@@ -27,6 +27,53 @@
                     <button type="button" class=" btn bg-info btn-sm text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                         Crear Empleado
                     </button>
+                  
+                    <form action="{{route('usuarios.index')}}" method="GET">
+                      @csrf
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Nombre</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Nombre"
+                                        value="{{request()->name}}">
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label>Cedula</label>
+                                    <input type="text" name="cedula" class="form-control" placeholder="Cedula"
+                                        value="{{request()->cedula}}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Rol</label>
+                                    <select name="rol_id" class="selecttwo form-control">
+                                        <option value="-1">Todos</option>
+                                        @foreach($roles as $rol)
+                                        <option value="{{$rol->id}}" {{request()->rol_id == $rol->id ? 'selected': ''}}>
+                                            {{$rol->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label>Estado</label>
+                                    <select name="state" class="selecttwo form-control">
+                                        <option value="-1"
+                                            {{ request()->state == -1 || is_null(request()->state) ? 'selected' : ''}}>
+                                            Todos</option>
+                                        @foreach(Config::get('const.states') as $state => $value)
+                                        <option value="{{$state}}" {{request()->state === "".$state ? 'selected' : ''}}>
+                                            {{$value['name']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-info btn-block ">Filtrar</button>
+                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <br>
                 <br>
                     
@@ -46,6 +93,7 @@
                                 <tbody>
                                     @foreach ($users as $usuario)
                                         <tr id="{{$usuario->id}}">
+                                          @if(!empty($usuario))
                                             <td>{{$usuario->name}}</td>
                                             <td>{{$usuario->last_name}}</td>
                                             <td>{{$usuario->email}}</td>
@@ -64,6 +112,9 @@
                                                 <a class="btn btn-danger btn-sm btnEraseUser" title="Eliminar"><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
                                             </td>
+                                          @else 
+                                           <td>No hay usuarios registrados</td>
+                                          @endif
                                         </tr>
                                    @endforeach
                                 </tbody>
@@ -103,7 +154,7 @@
           </div>
           <div class="form-group">
           <label class="form-control-label" for="input-apellido">Apellido *</label>
-            <input type="text" name="apellido" id="input-apellido" value="{{old('apellido')}}" class="form-control" placeholder="Apellido" required>
+            <input type="text" name="last_name" id="input-apellido" value="{{old('apellido')}}" class="form-control" placeholder="Apellido" required>
           </div>
           <div class="form-group">
           <label class="form-control-label" for="input-cedula">Cedula *</label>
@@ -120,7 +171,7 @@
           <div class="form-group">
           <label class="form-control-label" for="input-rol">Rol *</label>
           <select name="role_id" id="" class="form-control">
-            <option value="" selected disabled> Seleccione un Role</option>
+            <option value="" selected disabled> Seleccione un Rol</option>
             @foreach($roles as $rol)
             <option value="{{$rol->id}}">{{$rol->name}}</option>
             @endforeach

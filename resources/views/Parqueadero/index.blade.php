@@ -27,6 +27,38 @@
                     <button type="button" class=" btn bg-info btn-sm text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                         Crear Parqueadero
                         </button>
+                        <form action="{{route('parqueadero.index')}}" method="GET">
+                      @csrf
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Nombre</label>
+                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre"
+                                        value="{{request()->nombre}}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Estado</label>
+                                    <select name="state" class="selecttwo form-control">
+                                        <option value="-1"
+                                            {{ request()->state == -1 || is_null(request()->state) ? 'selected' : ''}}>
+                                            Todos</option>
+                                        @foreach(Config::get('const.states') as $state => $value)
+                                        <option value="{{$state}}" {{request()->state === "".$state ? 'selected' : ''}}>
+                                            {{$value['name']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-info btn-block ">Filtrar</button>
+                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">
                                 <thead class="thead-light" style=" background-color:rgb(24, 173, 116);">
@@ -42,6 +74,7 @@
                                 <tbody>
                                 @foreach ($puesto as $puestoss)
                                     <tr id="{{$puestoss->id}}">   
+                                        @if(!empty($puestoss))
                                             <td>{{$puestoss->puestos}}</td>
                                             <td>{{$puestoss->nombre}}</td>
                                             <td>{{$puestoss->pisos}}</td>
@@ -59,6 +92,9 @@
                                                 ><i class="nc-icon nc-simple-delete"></i>
                                                 </a>
                                             </td>
+                                        @else
+                                        <td>No hay parqueadero registrados</td>
+                                        @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

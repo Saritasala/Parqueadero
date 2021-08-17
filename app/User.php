@@ -55,14 +55,6 @@ class User extends Authenticatable
           return $query->where("name", 'LIKE', '%'.$name.'%');
        }
     }
-    public function scopeFlPhone($query, $phone)
-    {
-       if (trim($phone) != null) {
-          return $query->where("cellphone", 'LIKE', '%'.$phone.'%');
-       }
- 
-    }
- 
     public function scopeFlCedula($query, $cedula)
     {
        if (trim($cedula) != null) {

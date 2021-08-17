@@ -31,10 +31,12 @@
               <table class="table align-items-center text-center table-flush">
                 <thead class="thead-light" style=" background-color:rgb(24, 173, 116);">
                   <tr>
-                    <th scope="col">Propietario</th>
-                    <th scope="col">Hora de entrada</th>
-                    <th scope="col">Fecha de salida</th>
-                    <th scope="col">Hora de salida</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Cuota</th>
+                    <th scope="col">Tiempo</th>
+                    <th scope="col">Tipo vehiculo</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Accion</th>
                     <th></th>
@@ -90,11 +92,11 @@
             <textarea id="description" cols="30" rows="5" class="form-control" style="border-color: rgb(190, 190, 190)" required></textarea>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="input-modelo">Precio *</label>
+            <label class="form-control-label" for="input-precio">Precio *</label>
             <input type="number" id="precio"  value="{{old('precio')}}" class="form-control" placeholder="Modelo" required>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="input-modelo">Tiempo *</label>
+            <label class="form-control-label" for="input-tiempo">Tiempo *</label>
             <select id="tiempo" class="form-control" required>
               <option value=" " selected disabled> Seleccionar el tiempo </option>
               <option value="1"> Hora </option>
@@ -129,7 +131,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear vehiculo</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar tarifa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -140,7 +142,7 @@
       </div>
       @endif
       <div class="modal-body">
-        <form>
+        <form id="editForm">
           <div class="form-group">
             <label class="form-control-label" for="input-name">Parquadero *</label>
             <select class="form-control" id="parqueadero_id">
@@ -160,7 +162,7 @@
           </div>
           <div class="form-group">
             <label class="form-control-label" for="input-modelo">Precio *</label>
-            <input type="number" id="precio"  value="{{old('precio')}}" class="form-control" placeholder="Modelo" required>
+            <input type="number" id="precio"  value="{{old('precio')}}" class="form-control" placeholder="Precio" required>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="input-modelo">Tiempo *</label>
@@ -238,11 +240,35 @@
             for (let i = 0; i<data.length; i++){
                 body += `<tr><td>${data[i].parqueadero_id}</td><td>${data[i].title}</td>
       <td>${data[i].description}</td><td>${data[i].precio}</td><td>${data[i].tiempo== 1 ? 'Hora' : 'Minutos'}</td><td>${vehiculos[parseInt(data[i].tipo_vehiculo)-1]}</td>
-      <td>${data[i].state == 1 ? 'Activo' : 'Inactivo'}</td><td> <button class="btn  btn-warning" data-toggle="modal"
+      <td>${data[i].state == 1 ? 'Activo' : 'Inactivo'}</td><td> <button class="btn btn-warning btnEdit" data-toggle="modal"
                                             data-target="#Edit">Editar</buttton></td><td><button class="btn btn-danger" onclick="eliminar()">Eliminar</button></td></tr>`                
             }
 
             document.getElementById('data').innerHTML = body
-        }        
+        
+        } 
+
+      function editTarifas() {
+        let btnEdit = document.getElementsByClassName('btnEdit');
+        let form = document.getElementById('editForm');
+
+        if (btnEdit == null) {
+            return;
+        }
+        
+        fetch('http://127.0.0.1:5000/tarifa/{id}', {
+              headers:
+              {
+               'X-CSRF-TOKEN': token
+              }
+            })
+              .then(response => response.json())
+              .then(data => {
+
+              form.setAttribute("action", 'tarifa/' + data.data.id);
+       
+      })
+        }
+         
 </script>
 @endsection

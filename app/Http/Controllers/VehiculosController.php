@@ -18,7 +18,17 @@ class VehiculosController extends Controller
     public function index(){
         $vehicul= vehiculos::where('state',[1,2])->get();
         $cliente= Cliente::where('state',[1,2])->get();
-        return view('Vehiculos.index', compact('vehicul', 'cliente')); 
+        $parqueadero = parqueadero::where('state',[1,2])->get();
+
+        if (!is_null(request()->placa)) {
+            $vehicul = $vehicul->where('placa', request()->placa);
+        }
+        if (!is_null(request()->state) && request()->state != -1) {
+            $vehicul = $vehicul->where('state', request()->state);
+        }
+    
+        return view('Vehiculos.index', compact('vehicul', 'cliente', 'parqueadero')); 
+
     }
 
     public function create(){
@@ -71,6 +81,7 @@ class VehiculosController extends Controller
         $request->validate([
             'cliente_id' => 'required',
             'placa' => 'required|max:6',
+            'parqueadero_id' =>'required',
             'modelo' => 'required',
             'color' => 'required',
             'puesto' => 'required',
@@ -84,6 +95,7 @@ class VehiculosController extends Controller
             $newvehiculo = new vehiculos();
             $newvehiculo->user_id = (Auth::user()->id);
             $newvehiculo->clientes_id = $request->cliente_id;
+            $newvehiculo->parqueadero_id = $request->parqueadero_id;
             $newvehiculo->placa = $request->placa;
             $newvehiculo->modelo = $request->modelo;
             $newvehiculo->color = $request->color;
@@ -109,11 +121,33 @@ class VehiculosController extends Controller
        $request->validate([
           'id' => 'required|exists:vehiculos,id'
        ]);
-        $vehiculo = vehiculos::where('id', $request->id)->with('getParqueo')->first();
-        $tarifa = tarifas::where('state',[1,2])->with('getParqueadero')->get();
+        $vehiculo = vehiculos::where('id', $request->id)->with('getUser', 'getCliente', 'getParqueo')->first();
+        
+        $horas = strtotime($vehiculo->hora); 
+        $horas2 = strtotime($vehiculo->hora_salida); 
+        $total = $horas - $horas2;
+        $total2 = idate('y', $total);
+        $valor = $vehiculo->getParqueo->id;
+        $tarifa = tarifas::where('parqueadero_id', $valor)->first();
+        if($tarifa != null){
+            $tiempo = $tarifa->tiempo; 
+            if($tiempo == 1){
+               if( $total > 1){
+                $dato = $total * $tarifa->precio;
+               }else {
+                   $dato = 'Paga menos que una hora.';
+               } 
+            }else{
+                $dato = $total * $tarifa->precio;
+            }
+        }
+        $total3 = $total * $valor;
         $data = array(
             'vehiculo' =>$vehiculo,
             'tarifa' =>$tarifa,
+            'total' => $total,
+            'total3' => $total3,
+            'dato' => $dato,
         );
        return response()->json(['code' => 200, 'data'=>$data], 200);
     }

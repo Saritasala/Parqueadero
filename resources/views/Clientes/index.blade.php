@@ -27,7 +27,48 @@
                     <button type="button" class=" btn bg-info btn-sm text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                         Crear Clientses
                         </button>
-                        
+                        <form action="{{route('clientes.index')}}" method="GET">
+                      @csrf
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-group mb-1">
+                                    <label>Nombre</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Nombre"
+                                        value="{{request()->name}}">
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label>Apellido</label>
+                                    <input type="text" name="last_name" class="form-control" placeholder="Apellido"
+                                        value="{{request()->last_name}}">
+                                </div>
+                            </div>
+                            <div class="col">
+                            <div class="form-group mb-1">
+                                    <label>Cedula</label>
+                                    <input type="text" name="cedula" class="form-control" placeholder="Cedula"
+                                        value="{{request()->cedula}}">
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label>Estado</label>
+                                    <select name="state" class="selecttwo form-control">
+                                        <option value="-1"
+                                            {{ request()->state == -1 || is_null(request()->state) ? 'selected' : ''}}>
+                                            Todos</option>
+                                        @foreach(Config::get('const.states') as $state => $value)
+                                        <option value="{{$state}}" {{request()->state === "".$state ? 'selected' : ''}}>
+                                            {{$value['name']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-info btn-block ">Filtrar</button>
+                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
                         <div class="table-responsive">
                             <table class="table align-items-center text-center table-flush">
                                 <thead class="thead-light" style=" background-color:rgb(24, 173, 116);">
@@ -70,7 +111,7 @@
                                                     <i class="nc-icon nc-box"></i></button>
                                             </td>
                                             @else
-                                            <td>No hay productos registrados</td>
+                                            <td>No hay clientes registrados</td>
                                             @endif
                                         </tr>
                                         @endforeach

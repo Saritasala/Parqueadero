@@ -14,6 +14,7 @@ class VehiculosTableSeeder extends Seeder
         DB::table('vehiculos')->insert([
             'user_id'=> 1,
             'clientes_id'=> 1,
+            'parqueadero_id'=> 1,
             'placa' => 'CRC222',
             'modelo' => 'Comercio',
             'color' => 'Calle 33',

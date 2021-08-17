@@ -22,6 +22,20 @@ class ClientesController extends Controller
        }else{
         $clientes= Cliente::where('state', 1)->get();
         }
+
+        if (!is_null(request()->name)) {
+            $clientes = $clientes->where('name', request()->name);
+        }
+        if (!is_null(request()->last_name) && request()->last_name) {
+            $clientes = $clientes->where('last_name', request()->last_name);
+        }
+        if (!is_null(request()->cedula)) {
+            $clientes = $clientes->where('cedula', request()->cedula);
+        }
+        if (!is_null(request()->state) && request()->state != -1) {
+            $clientes = $clientes->where('state', request()->state);
+        }
+    
         return view('Clientes.index',['clientes'=>$clientes]);
     }
 

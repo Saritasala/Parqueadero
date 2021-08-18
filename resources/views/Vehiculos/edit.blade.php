@@ -24,14 +24,23 @@
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-name">Apellido del cliene *</label>
-                            <input type="text" name="name" id="input-name" value="{{$vehiculs->getCliente->last_name}}"
+                            <input type="text" name="last_name" id="input-name" value="{{$vehiculs->getCliente->last_name}}"
                                 class="form-control" placeholder="Nombre" disabled>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-name">Telefono del cliene *</label>
-                            <input type="number" name="name" id="input-name" value="{{$vehiculs->getCliente->phone}}"
+                            <input type="number" name="phone" id="input-name" value="{{$vehiculs->getCliente->phone}}"
                                 class="form-control" placeholder="Nombre" disabled>
                         </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-name">Parqueadero *</label>
+                            <select class="form-control" name="parqueadero_id">
+                            <option value=" " >Seleccionar parqueadero</option>
+                                @foreach($parqueadero as $parquear)
+                                    <option value="{{$parquear->id}}">{{$parquear->nombre}}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-name">Correo del cliene *</label>
                             <input type="email" name="email" id="input-name" value="{{$vehiculs->getCliente->email}}"
@@ -62,6 +71,14 @@
                             <input type="datetime" name="fecha_salida" id="input-fecha_salida" value="{{$vehiculs->fecha_salida}}"
                                 class="form-control" placeholder="Fecha de salida" required>
                         </div>
+                          <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-hora_salida">Hora de salida *</label>
+                                <input type="time" name="hora_salida" id="input-hora_salida" value="{{$vehiculs->hora_salida}}" class="form-control" placeholder="Hora de salida" required>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                            <label class="form-control-label" for="input-hora">Hora de entrada *</label>
+                                <input type="time" name="hora" id="input-hora" value="{{$vehiculs->hora}}" class="form-control" placeholder="Hora de entrada" required>
+                            </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="form-control-label" for="input-state">Estado del vehiculo *</label>
                             <select  name="state" class="form-control" required>

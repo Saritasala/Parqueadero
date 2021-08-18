@@ -54,7 +54,7 @@
                             </div>
                             <div class="col">
                                 <button class="btn btn-info btn-block ">Filtrar</button>
-                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                                
                             </div>
                         </div>
                     </form>
@@ -143,7 +143,7 @@
          @csrf
           <div class="form-group">
           <label class="form-control-label" for="input-name">Cliente *</label>
-          <select class="form-control" name="cliente_id">
+          <select class="form-control" name="clientes_id">
           <option value=" " >Seleccionar cliente</option>
             @foreach($cliente as $clientes)
                 <option value="{{$clientes->id}}">{{$clientes->name}}</option>
@@ -152,7 +152,7 @@
           </div>
           <div class="form-group">
           <label class="form-control-label" for="input-name">Parqueadero *</label>
-          <select class="form-control" name="cliente_id">
+          <select class="form-control" name="parqueadero_id">
           <option value=" " >Seleccionar parqueadero</option>
             @foreach($parqueadero as $parquear)
                 <option value="{{$parquear->id}}">{{$parquear->nombre}}</option>

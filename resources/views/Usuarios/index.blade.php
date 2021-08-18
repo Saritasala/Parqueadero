@@ -69,7 +69,7 @@
                             </div>
                             <div class="col">
                                 <button class="btn btn-info btn-block ">Filtrar</button>
-                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                                
                             </div>
                         </div>
                     </form>

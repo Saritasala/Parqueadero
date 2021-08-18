@@ -18,17 +18,17 @@
                     @method('PUT')
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
-                            <label class="form-control-label" for="input-puestos">Nombre del cliene *</label>
+                            <label class="form-control-label" for="input-puestos">Puestos *</label>
                             <input type="number" name="puestos" id="input-puestos" value="{{$parqu->puestos}}"
                                 class="form-control" placeholder="Puestos" required>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
-                            <label class="form-control-label" for="input-nombre">Apellido del cliene *</label>
+                            <label class="form-control-label" for="input-nombre">Nombre del parqueadero *</label>
                             <input type="text" name="nombre" id="input-nombre" value="{{$parqu->nombre}}"
                                 class="form-control" placeholder="Nombre" required>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
-                            <label class="form-control-label" for="input-pisos">Telefono del cliene *</label>
+                            <label class="form-control-label" for="input-pisos">Pisos *</label>
                             <input type="number" name="pisos" id="input-pisos" value="{{$parqu->pisos}}"
                                 class="form-control" placeholder="Pisos" required>
                         </div>
@@ -44,7 +44,7 @@
                     </div>
                     
                         <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-round">Actualizar Vehiculo</button>
+                            <button type="submit" class="btn btn-primary btn-round">Actualizar Parqueadero</button>
                         </div>
                        
                 </form>

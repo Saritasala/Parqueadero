@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
-use App\comercio;
+use App\vehiculos;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RestActions;
@@ -17,6 +17,7 @@ class ClientesController extends Controller
 
     public function index(){
     $user = Auth::user();
+    $vehiculos = vehiculos::where('state',[1,2])->get();
         if($user->role_id==1){
        $clientes= Cliente::where('state',[1,2])->get();
        }else{
@@ -36,7 +37,7 @@ class ClientesController extends Controller
             $clientes = $clientes->where('state', request()->state);
         }
     
-        return view('Clientes.index',['clientes'=>$clientes]);
+        return view('Clientes.index',['clientes'=>$clientes, 'vehiculos' =>$vehiculos]);
     }
 
     public function create(){

@@ -17,7 +17,7 @@
                     <div class="card-header" style="text-align: center; background-color:rgb(17, 116, 78); font-size: 12px; ">
                         <div class="row align-items-center">
                             <div class="col-md-12">
-                                <h5 class="card-title text-white" >Productos</h5>
+                                <h5 class="card-title text-white" >Clientes</h5>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col">
                                 <button class="btn btn-info btn-block ">Filtrar</button>
-                                <button class="btn btn-info btn-block btnFilterEraseUser">Borrar</button>
+                               
                             </div>
                         </div>
                     </form>
